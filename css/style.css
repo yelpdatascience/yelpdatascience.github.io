@@ -33,9 +33,13 @@ h3 {
 }
 
 p {
-    font-size: 15px;
+    font-size: 18px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+ol {
+    font-size: 18px;
 }
 
 .section {
@@ -59,6 +63,7 @@ nav.horizontal-page-navigation {
 
 nav.horizontal-page-navigation li {
     display: inline-block;
+    margin-right: 20px;
 }
 
 nav.horizontal-page-navigation li a {

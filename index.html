@@ -21,54 +21,123 @@
         <ul class="menu">
             <li><a href="#top">Top</a></li>
             <li><a href="#section1">Introduction</a></li>
-            <li><a href="#section2">Yelp Reviews</a></li>
-            <li><a href="#section3">Our Goals</a></li>
-            <li><a href="#section4">Initial Visualizations</a></li>
-            <li><a href="#section5">Models</a></li>
-            <li><a href="#section6">Conclusion</a></li>
+            <li><a href="#section2">Data Collection & Initial Visualizations</a></li>
+            <li><a href="#section3">Models</a></li>
+            <li><a href="#section4">Conclusions</a></li>
         </ul>
     </nav>
 
     <div id="top" class="section">
-        <! img src="header_image.png" height="300px" text-align="center" >
         <img src="http://placehold.it/1200x500?text=Header+Image" height="500px" width="100%">
-    <h1>Datascience with User Ratings And Reviews</h1>
+    <h1>Reviewing Reviews: A Study of the Helpfulness of Yelp User Reviews</h1>
+        <h3>John Bowers, Michaela Kane, Jarele Soyinka, & Nisha Swarup</h3>
+
     </div>
 
     <div id="section1" class="section">
-        <h2>Introduction</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pellentesque nibh velit, id pretium lacus lobortis et. Curabitur augue dolor, dignissim quis metus a, vehicula ultricies nulla. Aenean ornare luctus lectus, vel gravida magna tincidunt sed. Morbi consequat leo a tempus molestie. Etiam aliquam lorem a enim semper bibendum. Duis elementum consectetur ex, nec mollis ipsum lacinia ut. Curabitur et leo a risus ullamcorper elementum. Cras pharetra nec sapien quis volutpat. Nullam bibendum porttitor lorem vitae accumsan. Integer ornare in risus dapibus iaculis. Praesent pellentesque ante nec malesuada sagittis. Donec consequat placerat turpis eu posuere. Duis in mauris cursus, pulvinar lorem non, dapibus ex. Quisque viverra metus sem, tincidunt congue arcu scelerisque eu.</p>
-        <p>Morbi ullamcorper nisi vel orci accumsan elementum. Fusce at nisi pellentesque, commodo magna id, tempor libero. Aenean sem odio, congue vitae nulla ut, sagittis maximus felis. Nunc pellentesque fermentum est, in porttitor lectus iaculis ut. Vestibulum mattis lacus lectus, id varius ipsum faucibus quis. Nullam eget dignissim lorem, sed sagittis quam. Etiam finibus, eros quis dictum fringilla, dui urna consectetur magna, et congue urna nibh in leo. Vestibulum varius felis at consequat sagittis. Vestibulum a vulputate ex. Phasellus ut nunc nunc. Praesent iaculis porttitor lobortis. Cras vestibulum.</p>
+        <h2>Introduction & Objectives</h2>
+        <div class="row">
+            <div class="col-sm-8">
+                <p>
+                    Most people are familiar with the popular business-ranking site <a href="https://www.yelp.com">Yelp</a>, most often used to search
+                    for popular restaurants or locations in a given area. In addition to reading about other users' experience at a given site,
+                    individuals can also rate each others' reviews as 'Useful,' 'Funny,' or 'Cool.'
+                </p>
+
+                <p>For our project, we decided to investigate exactly how users rated other users’ reviews.
+                    In particular, we wanted to investigate what made a post helpful to other users: does word length impact the usefulness of a
+                    post? How about the ranking of the restaurant in question? In this study, we hope to determine what sorts of reviews are most
+                    useful to other users. By determining what characteristics of reviews  contribute to their usefulness, we can create a model
+                    to predict a review's usefulness given certain characteristics. This can help sites like Yelp give their users the best
+                    experience by providing them with what are considered the most useful reviews for a given business. By creating a model
+                    to predict the usefulness of a review given the unique characteristics of that review, we hope to help companies such as
+                    Yelp determine in what order reviews should be shown, rather than showing relatively useless reviews or burying the useful ones
+                    under other posts.
+                </p>
+            </div>
+            <div class="col-sm-4">
+                <img src="Yelp_Logo.png", style="width:300px;height:150px;">
+            </div>
+        </div>
     </div>
 
     <div id="section2" class="section">
-        <h2>Yelp Reviews</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pellentesque nibh velit, id pretium lacus lobortis et. Curabitur augue dolor, dignissim quis metus a, vehicula ultricies nulla. Aenean ornare luctus lectus, vel gravida magna tincidunt sed. Morbi consequat leo a tempus molestie. Etiam aliquam lorem a enim semper bibendum. Duis elementum consectetur ex, nec mollis ipsum lacinia ut. Curabitur et leo a risus ullamcorper elementum. Cras pharetra nec sapien quis volutpat. Nullam bibendum porttitor lorem vitae accumsan. Integer ornare in risus dapibus iaculis. Praesent pellentesque ante nec malesuada sagittis. Donec consequat placerat turpis eu posuere. Duis in mauris cursus, pulvinar lorem non, dapibus ex. Quisque viverra metus sem, tincidunt congue arcu scelerisque eu.</p>
-        <p>Morbi ullamcorper nisi vel orci accumsan elementum. Fusce at nisi pellentesque, commodo magna id, tempor libero. Aenean sem odio, congue vitae nulla ut, sagittis maximus felis. Nunc pellentesque fermentum est, in porttitor lectus iaculis ut. Vestibulum mattis lacus lectus, id varius ipsum faucibus quis. Nullam eget dignissim lorem, sed sagittis quam. Etiam finibus, eros quis dictum fringilla, dui urna consectetur magna, et congue urna nibh in leo. Vestibulum varius felis at consequat sagittis. Vestibulum a vulputate ex. Phasellus ut nunc nunc. Praesent iaculis porttitor lobortis. Cras vestibulum.</p>
+        <h2>Data Collection & Initial Visualizations</h2>
+        <p>
+            To start, we downloaded a large archive of Yelp reviews (about 2 million total) from a Yelp-sponsored data competition page. To make
+            the data easier to work with, we chose to sample only those reviews which were published in 2015 (about 600,000 total).
+            After some simple cleaning to remove duplicates and verify the data’s integrity, we began initial data visualization. Our first histogram of
+            a sample of 50,000 reviews from the data revealed the following:
+
+        </p>
+
+        <!--interactive visualization showing histogram of number of useful/funny/cool votes for all posts-->
+
+
+        <p>
+            Clearly, many reviews are not receiving any votes for usefulness, coolness, or funniness, which brings us to our list of issues to consider
+            when dealing with this dataset:
+
+        <ol>
+        <li>Our model must be capable of dealing with large training and test sets due to the massive volume of reviews published on Yelp</li>
+        <li>Due to the nature of Yelp’s review rating system, our training data is inherently flawed – reviews might not receive votes
+            because they are:</li>
+            <ol type="a">
+                <li>actually not useful/funny/cool (this is optimal), or</li>
+                <li>despite being useful/funny/cool, the review simply did not receive any exposure and so received zero votes.</li>
+            </ol>
+        </ol>
+
+        </p>
     </div>
 
     <div id="section3" class="section">
-        <h2>Our Goals</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pellentesque nibh velit, id pretium lacus lobortis et. Curabitur augue dolor, dignissim quis metus a, vehicula ultricies nulla. Aenean ornare luctus lectus, vel gravida magna tincidunt sed. Morbi consequat leo a tempus molestie. Etiam aliquam lorem a enim semper bibendum. Duis elementum consectetur ex, nec mollis ipsum lacinia ut. Curabitur et leo a risus ullamcorper elementum. Cras pharetra nec sapien quis volutpat. Nullam bibendum porttitor lorem vitae accumsan. Integer ornare in risus dapibus iaculis. Praesent pellentesque ante nec malesuada sagittis. Donec consequat placerat turpis eu posuere. Duis in mauris cursus, pulvinar lorem non, dapibus ex. Quisque viverra metus sem, tincidunt congue arcu scelerisque eu.</p>
-        <p>Morbi ullamcorper nisi vel orci accumsan elementum. Fusce at nisi pellentesque, commodo magna id, tempor libero. Aenean sem odio, congue vitae nulla ut, sagittis maximus felis. Nunc pellentesque fermentum est, in porttitor lectus iaculis ut. Vestibulum mattis lacus lectus, id varius ipsum faucibus quis. Nullam eget dignissim lorem, sed sagittis quam. Etiam finibus, eros quis dictum fringilla, dui urna consectetur magna, et congue urna nibh in leo. Vestibulum varius felis at consequat sagittis. Vestibulum a vulputate ex. Phasellus ut nunc nunc. Praesent iaculis porttitor lobortis. Cras vestibulum.</p>
+        <h2>Models</h2>
+        <p>
+            Given that we were working with text data, our first step was to get the reviews into a form interpretable by our model.
+            After experimenting with a number of methods, we settled on non-binary count vectorization with Tf-idf weighting, a
+            word-based tokenizer, and a no stemming algorithm. This configuration seemed to give the best and most stable results overall.
+            It seems that using stemming algorithms, word pairs, and other enhancements failed to boost our results.
+        </p>
+        <p>
+            After vectorizing the reviews we tried 4 different classification algorithms for sentiment analysis: Random Forests, AdaBoost
+            with Random Forests and Logistic Regression, Linear SVC, and Logistic Regression. Each algorithm was fit and tested on all three
+            different comment types. Class weights were set to “balanced” in each case to compensate for our imbalanced sample: only a minority
+            reviews received any votes. Unfortunately, Random Forests and AdaBoost did not perform particularly well on our dataset despite intensive
+            tuning. Linear SVC and Logistic Regression performed comparably well, so we compared their finer points.
+        </p>
+        <p>
+            Linear SVC seemed more sensitive to its tuning parameter than Logistic Regression, often fluctuating in accuracy for both
+            classes with minor changes. Furthermore, as the samples tested became larger Linear SVC experienced significantly longer fit times than
+            Logistic Regression. Finally – and perhaps most importantly for our project – Logistic Regression can natively provide class
+            probabilities while making predictions. This would be extremely useful in ranking reviews that have not yet been voted on.
+            While SVC is capable of making probability estimates, it does so through an extremely expensive cross validation procedure.
+            As such, we decided that Logistic Regression provided the best model for our particular objectives.
+        </p>
     </div>
 
     <div id="section4" class="section">
-        <h2>Initial Visualizations</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pellentesque nibh velit, id pretium lacus lobortis et. Curabitur augue dolor, dignissim quis metus a, vehicula ultricies nulla. Aenean ornare luctus lectus, vel gravida magna tincidunt sed. Morbi consequat leo a tempus molestie. Etiam aliquam lorem a enim semper bibendum. Duis elementum consectetur ex, nec mollis ipsum lacinia ut. Curabitur et leo a risus ullamcorper elementum. Cras pharetra nec sapien quis volutpat. Nullam bibendum porttitor lorem vitae accumsan. Integer ornare in risus dapibus iaculis. Praesent pellentesque ante nec malesuada sagittis. Donec consequat placerat turpis eu posuere. Duis in mauris cursus, pulvinar lorem non, dapibus ex. Quisque viverra metus sem, tincidunt congue arcu scelerisque eu.</p>
-        <p>Morbi ullamcorper nisi vel orci accumsan elementum. Fusce at nisi pellentesque, commodo magna id, tempor libero. Aenean sem odio, congue vitae nulla ut, sagittis maximus felis. Nunc pellentesque fermentum est, in porttitor lectus iaculis ut. Vestibulum mattis lacus lectus, id varius ipsum faucibus quis. Nullam eget dignissim lorem, sed sagittis quam. Etiam finibus, eros quis dictum fringilla, dui urna consectetur magna, et congue urna nibh in leo. Vestibulum varius felis at consequat sagittis. Vestibulum a vulputate ex. Phasellus ut nunc nunc. Praesent iaculis porttitor lobortis. Cras vestibulum.</p>
-    </div>
-
-    <div id="section5" class="section">
-        <h2>Models</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pellentesque nibh velit, id pretium lacus lobortis et. Curabitur augue dolor, dignissim quis metus a, vehicula ultricies nulla. Aenean ornare luctus lectus, vel gravida magna tincidunt sed. Morbi consequat leo a tempus molestie. Etiam aliquam lorem a enim semper bibendum. Duis elementum consectetur ex, nec mollis ipsum lacinia ut. Curabitur et leo a risus ullamcorper elementum. Cras pharetra nec sapien quis volutpat. Nullam bibendum porttitor lorem vitae accumsan. Integer ornare in risus dapibus iaculis. Praesent pellentesque ante nec malesuada sagittis. Donec consequat placerat turpis eu posuere. Duis in mauris cursus, pulvinar lorem non, dapibus ex. Quisque viverra metus sem, tincidunt congue arcu scelerisque eu.</p>
-        <p>Morbi ullamcorper nisi vel orci accumsan elementum. Fusce at nisi pellentesque, commodo magna id, tempor libero. Aenean sem odio, congue vitae nulla ut, sagittis maximus felis. Nunc pellentesque fermentum est, in porttitor lectus iaculis ut. Vestibulum mattis lacus lectus, id varius ipsum faucibus quis. Nullam eget dignissim lorem, sed sagittis quam. Etiam finibus, eros quis dictum fringilla, dui urna consectetur magna, et congue urna nibh in leo. Vestibulum varius felis at consequat sagittis. Vestibulum a vulputate ex. Phasellus ut nunc nunc. Praesent iaculis porttitor lobortis. Cras vestibulum.</p>
-    </div>
-
-    <div id="section6" class="section">
         <h2>Conclusion</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pellentesque nibh velit, id pretium lacus lobortis et. Curabitur augue dolor, dignissim quis metus a, vehicula ultricies nulla. Aenean ornare luctus lectus, vel gravida magna tincidunt sed. Morbi consequat leo a tempus molestie. Etiam aliquam lorem a enim semper bibendum. Duis elementum consectetur ex, nec mollis ipsum lacinia ut. Curabitur et leo a risus ullamcorper elementum. Cras pharetra nec sapien quis volutpat. Nullam bibendum porttitor lorem vitae accumsan. Integer ornare in risus dapibus iaculis. Praesent pellentesque ante nec malesuada sagittis. Donec consequat placerat turpis eu posuere. Duis in mauris cursus, pulvinar lorem non, dapibus ex. Quisque viverra metus sem, tincidunt congue arcu scelerisque eu.</p>
-        <p>Morbi ullamcorper nisi vel orci accumsan elementum. Fusce at nisi pellentesque, commodo magna id, tempor libero. Aenean sem odio, congue vitae nulla ut, sagittis maximus felis. Nunc pellentesque fermentum est, in porttitor lectus iaculis ut. Vestibulum mattis lacus lectus, id varius ipsum faucibus quis. Nullam eget dignissim lorem, sed sagittis quam. Etiam finibus, eros quis dictum fringilla, dui urna consectetur magna, et congue urna nibh in leo. Vestibulum varius felis at consequat sagittis. Vestibulum a vulputate ex. Phasellus ut nunc nunc. Praesent iaculis porttitor lobortis. Cras vestibulum.</p>
+        <p>While we feel that we pushed the limits of our models, the confounding factors in our data capped our cross validated accuracy in the low
+            to mid 60 percent range for both classes. These factors are inherently arbitrary in nature which reflected in the tuning for Random
+            Forests and AdaBoost. Despite, the weighting and biases we pushed to our model, the non-concrete nature of what humans view as funny, cool,
+            or useful rendered those efforts useless. However, the relationship between the review and how it’s perceived is not completely arbitrary
+            as evidenced by our success with LinearSVC and Logistic regression. Consistent key words and persistent sentiment analysis for reviews
+            proved imperative for these models as they were able to demonstrate their strengths by their respective cross-validation procedures and
+            class prediction abilities.
+        </p>
+        <p>
+            This is further shown as we went beyond the scope of our project to test on Amazon reviews. This dataset enabled us to target reviews
+            that had been adequately rated, and secured a large sample pool of helpful (voted helpful over 50%) vs. non-helpful reviews. When tested on
+            this dataset, our models achieved positive and negative accuracies between 72% and 80%. However, the fact that our model produced meaningful
+            (if important) results implies that it would provide a significant improvement over random or chronological presentation of voteless reviews.
+        </p>
+        <p>
+            The benefits of a system like this are very apparent. Not only would websites be able to score and rank unrated reviews, companies would have
+            a means of seeing common trends on what makes a review helpful. This could manifest itself in advertising, with business emphasizing features
+            commonly discussed in reviews, product innovation, to meet the needs of that have been previously ignored, and many other areas as valued
+            information assets. Even without a perfect accuracy, a wealth of information can always be used to inform important decisions.
+        </p>
     </div>
 
 </div>
