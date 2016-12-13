@@ -14,8 +14,13 @@ FreqBar = function(_parentElement, _usefulData, _funnyData, _coolData) {
 
     // List of all data
     vis.allData = [vis.usefulData, vis.funnyData, vis.coolData];
+    vis.allTypes = ["Useful", "Funny", "Cool"];
+
+    // List of color schemes
+    vis.rectCol = ["#F15C00", "#41A700", "#0097EC"];
 
     // start visualization by showing 'useful' votes
+    vis.selVal = 0;
     vis.selData = vis.usefulData;
 
     // initialize visualization
@@ -45,12 +50,13 @@ FreqBar.prototype.initVis = function() {
     // INIT AXES (useful)
 
     // initialize x axis scale (using useful data)
-    vis.x = d3.scale.ordinal()
-        .rangeRoundBands([0, vis.width], .1);
+    vis.x = d3.scale.linear()
+        .domain([0, 15])
+        .range([0, vis.width]);
     // initialize y axis scale (using useful data)
     vis.y = d3.scale.linear()
-        .domain([0, d3.max(vis.selData, function (d) {
-            return d.freq;
+        .domain([0, d3.max(vis.allData[1], function (d) {
+            return d.freq + 10000;
         })])
         .range([vis.height, 0]);
 
@@ -62,6 +68,17 @@ FreqBar.prototype.initVis = function() {
     vis.barYAxis = d3.svg.axis()
         .scale(vis.y)
         .orient("left");
+
+    // Draw the x axis
+    vis.svg.append("g")
+        .attr("class", "axis x-axis")
+        .call(vis.barXAxis)
+        .attr("transform", "translate(" + vis.margin.left + "," + vis.height + ")");
+    // Draw the y axis
+    vis.svg.append("g")
+        .attr("class", "axis y-axis")
+        .call(vis.barYAxis)
+        .attr("transform", "translate(" + vis.margin.left + ", 0)");
 
     vis.updateVis();
 };
@@ -84,40 +101,8 @@ FreqBar.prototype.updateVis = function() {
 
     var vis = this;
 
-    console.log(vis.selData);
-
-    // DRAW AXES
-    // update domains
-    // vis.x
-    //     .domain([0, d3.max(vis.selData, function (d) {
-    //         return d.num;
-    //     })]);
-
-    vis.y
-        .domain([0, d3.max(vis.selData, function (d) {
-            return d.freq;
-        })]);
-
-    // Draw the x axis
-    vis.svg.append("g")
-        .attr("class", "axis x-axis")
-        .call(vis.barXAxis)
-        .attr("transform", "translate(" + vis.margin.left + "," + vis.height + ")");
-    // Draw the y axis
-    vis.svg.append("g")
-        .attr("class", "axis y-axis")
-        .call(vis.barYAxis)
-        .attr("transform", "translate(" + vis.margin.left + ", 0)");
-
-    // update axes
-    vis.svg.selectAll("g.y-axis")
-        .transition()
-        .duration(500)
-        .call(vis.barYAxis);
-    vis.svg.selectAll("g.x-axis")
-        .transition()
-        .duration(500)
-        .call(vis.barXAxis);
+    // print number of listings in zoomed region to listing-count
+    document.getElementById('type').innerHTML = (vis.allTypes[vis.selVal]);
 
     // DRAW BARS
     // Data-join (rectangle now contains the update selection)
@@ -133,15 +118,22 @@ FreqBar.prototype.updateVis = function() {
         .transition()
         .duration(500)
         .attr("x", function(d) {
-            return vis.x(d.num) + vis.margin.left;
+            if (d.num < 15) {
+                return vis.x(d.num) + vis.margin.left;
+            }
+            // don't let values for voteNum > 15 appear
+            else {
+                return -100;
+            }
         })
         .attr("y", function(d) {
             return vis.y(d.freq);
         })
-        .attr("width", 50)
+        .attr("width", 40)
         .attr("height", function(d) {
             return vis.height - vis.y(d.freq);
-        });
+        })
+        .attr("fill", vis.rectCol[vis.selVal]);
 
     // Exit
     vis.rect.exit().remove();

@@ -82,6 +82,23 @@ nav.horizontal-page-navigation li a:hover {
 
 /**  BAR CHART  **/
 
+.btn {
+    background-color: white;
+    color: #CC0000;
+    border: 2px solid #CC0000;
+}
+
+.btn:hover {
+    background-color: #CC0000;
+    color: white;
+}
+
+.btn:active {
+    background-color: #CC0000;
+    color: white;
+}
+
+
 .axis {
     font: 10px sans-serif;
     fill: #333;
@@ -97,13 +114,5 @@ nav.horizontal-page-navigation li a:hover {
     fill: none;
     stroke: #333;
     shape-rendering: crispEdges;
-}
-
-.x-axis {
-    font-size: 12px;
-}
-
-.x-axis path {
-    display: none;
 }
 
