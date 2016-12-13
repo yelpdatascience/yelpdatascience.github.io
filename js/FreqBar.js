@@ -50,9 +50,12 @@ FreqBar.prototype.initVis = function() {
     // INIT AXES (useful)
 
     // initialize x axis scale (using useful data)
-    vis.x = d3.scale.linear()
-        .domain([0, 15])
-        .range([0, vis.width]);
+    // vis.x = d3.scale.linear()
+    //     .domain([0, 15])
+    //     .range([0, vis.width]);
+    vis.x = d3.scale.ordinal()
+        .domain(d3.range(15))
+        .rangeRoundBands([0, vis.width]);
     // initialize y axis scale (using useful data)
     vis.y = d3.scale.linear()
         .domain([0, d3.max(vis.allData[1], function (d) {
@@ -119,7 +122,7 @@ FreqBar.prototype.updateVis = function() {
         .duration(500)
         .attr("x", function(d) {
             if (d.num < 15) {
-                return vis.x(d.num) + vis.margin.left;
+                return 5 + vis.x(d.num) + vis.margin.left;
             }
             // don't let values for voteNum > 15 appear
             else {
