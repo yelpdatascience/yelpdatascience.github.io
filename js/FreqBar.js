@@ -50,9 +50,6 @@ FreqBar.prototype.initVis = function() {
     // INIT AXES (useful)
 
     // initialize x axis scale (using useful data)
-    // vis.x = d3.scale.linear()
-    //     .domain([0, 15])
-    //     .range([0, vis.width]);
     vis.x = d3.scale.ordinal()
         .domain(d3.range(15))
         .rangeRoundBands([0, vis.width]);
@@ -83,6 +80,19 @@ FreqBar.prototype.initVis = function() {
         .call(vis.barYAxis)
         .attr("transform", "translate(" + vis.margin.left + ", 0)");
 
+    // Label the x axis
+    vis.svg.append("text")
+        .attr("class", "axis-label x-label")
+        .attr("x", vis.width - 70)
+        .attr("y", vis.height - 10)
+        .text("Number of Votes on Post");
+
+    // Label the y axis
+    vis.svg.append("text")
+        .attr("class", "axis-label y-label")
+        .attr("transform", "translate(10, " + vis.height/2 + "), rotate(270)")
+        .text("Frequency");
+
     vis.updateVis();
 };
 
@@ -104,8 +114,11 @@ FreqBar.prototype.updateVis = function() {
 
     var vis = this;
 
-    // print number of listings in zoomed region to listing-count
+    // print type of votes being visualized
     document.getElementById('type').innerHTML = (vis.allTypes[vis.selVal]);
+    console.log(vis.selData[0]);
+    // print number of posts with zero views
+    document.getElementById('zeros').innerHTML = (vis.selData[0].freq).toString();
 
     // DRAW BARS
     // Data-join (rectangle now contains the update selection)

@@ -74,13 +74,14 @@
         <!--Bar graph for frequency of number of votes -->
         <div class="row">
             <h3>Frequency of <span id="type"></span> Votes per Post</h3>
+            <h4>Number of Posts with 0 Votes: <span id="zeros"></span></h4>
         </div>
 
         <div class="row">
             <div class="col-sm-8" id="freq-bar"></div>
             <div class="col-sm-4">
                 <form id="vote-type" onchange="dataManipulation()">
-                    <label>View Vote Histogram for: </label>
+                    <label>View Vote Histogram for: </label><br>
                     <div class="btn-group" data-toggle="buttons">
                         <label class="btn btn-primary active">
                             <input type="radio" name="options" value=0 autocomplete="off" checked> Useful
@@ -92,7 +93,7 @@
                             <input type="radio" name="options" value=2 autocomplete="off"> Cool
                         </label>
                     </div>
-                </form>
+                </form><br>
             </div>
         </div>
 
