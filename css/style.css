@@ -206,8 +206,6 @@ label {
     border: 2px solid #CC0000;
 }
 
-
-
 .axis {
     font: 10px sans-serif;
     fill: #333;
@@ -410,10 +408,20 @@ td.text-right {
     color: white;
 }
 
+#useful-rev p{
+    padding-left: 0;
+    padding-right: 0;
+}
+
 #funny-rev {
     background-color:#41A700;
     margin: 60px;
     color: white;
+}
+
+#funny-rev p{
+    padding-left: 0;
+    padding-right: 0;
 }
 
 #cool-rev {
@@ -422,10 +430,20 @@ td.text-right {
     color: white;
 }
 
+#cool-rev p{
+    padding-left: 0;
+    padding-right: 0;
+}
+
 #notUseful-rev {
     background-color: #c97435;
     margin: 60px;
     color: white;
+}
+
+#notUseful-rev p{
+    padding-left: 0;
+    padding-right: 0;
 }
 
 #notFunny-rev {
@@ -434,10 +452,20 @@ td.text-right {
     color: white;
 }
 
+#notFunny-rev p{
+    padding-left: 0;
+    padding-right: 0;
+}
+
 #notCool-rev {
     background-color: #4889ba;
     margin: 60px;
     color: white;
+}
+
+#notCool-rev p{
+    padding-left: 0;
+    padding-right: 0;
 }
 
 /* FORCE DIAGRAM */
