@@ -3,16 +3,18 @@
 body {
     font-family: 'Roboto', sans-serif;
     padding-right: 50px;
+    line-height: 1.5;
+
 }
 
 h1 {
     font-family: 'Raleway', serif;
-    font-size: 65px;
+    font-size: 80px;
     font-weight: 200;
     text-transform: uppercase;
     padding-left: 50px;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 h2 {
@@ -41,14 +43,17 @@ h3 {
 h4 {
     font-family: 'Raleway', serif;
     padding-left: 50px;
+    padding-right: 50px;
     font-size: 40px;
     font-weight: 200;
     text-align: left;
     margin-top: 50px;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 h5 {
+    font-family: 'Raleway', serif;
     padding-left: 50px;
     font-size: 32px;
     font-weight: 200;
@@ -83,8 +88,8 @@ ol {
     background:
         linear-gradient(
           to bottom,
-          rgba(0, 0, 0, .3),
-          rgba(0, 0, 0, .8)
+          rgba(0, 0, 0, .45),
+          rgba(0, 0, 0, .65)
         ),
         url("../img/header_image.jpg") no-repeat center center;
     -webkit-background-size: cover;
