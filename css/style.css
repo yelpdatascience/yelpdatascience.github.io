@@ -123,6 +123,10 @@ ol {
     padding-top: 5px;
 }
 
+.container-fluid {
+    padding:0;
+}
+
 /** NAV **/
 
 nav.horizontal-page-navigation {
