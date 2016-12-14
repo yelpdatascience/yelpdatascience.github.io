@@ -43,7 +43,7 @@ FreqBar.prototype.initVis = function() {
 
     // append drawing space
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
-        .attr("width", vis.width + vis.margin.right + vis.margin.left)
+        .attr("width", vis.width + vis.margin.right)
         .attr("height", vis.height + vis.margin.top + vis.margin.bottom);
 
 
@@ -83,10 +83,9 @@ FreqBar.prototype.initVis = function() {
     // Label the x axis
     vis.svg.append("text")
         .attr("class", "axis-label x-label")
-        .attr("x", vis.width - 70)
+        .attr("x", vis.width - 100)
         .attr("y", vis.height - 10)
         .text("Number of Votes on Post");
-
     // Label the y axis
     vis.svg.append("text")
         .attr("class", "axis-label y-label")

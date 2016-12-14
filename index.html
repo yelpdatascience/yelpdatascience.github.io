@@ -5,7 +5,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CS109a Final Project - User Ratings and Reviews</title>
-    <link rel='shortcut icon' href='img/favicon.ico' type='image/x-icon'/ >
+    <link rel='shortcut icon' href='img/favicon.ico' type='image/x-icon' >
 
     <!-- CSS libraries -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -24,10 +24,11 @@
             <li><a href="#section1">Introduction</a></li>
             <li><a href="#section2">Data & Visualizations</a></li>
             <li><a href="#section3">Models</a></li>
-            <li><a href="#section4">Conclusions</a></li>
+            <li><a href="#section4">Conclusion</a></li>
             <li><a href="#section5">Appendix</a></li>
         </ul>
     </nav>
+
 
     <div id="top" class="introduction">
         <header>
@@ -148,6 +149,150 @@
             capable of making probability estimates, it does so through an extremely expensive cross validation procedure.
             As such, we decided that Logistic Regression provided the best model for our particular objectives.
         </p>
+
+        <!--<div id="tooltip" class="hidden" center = "right">-->
+            <!--<p><strong><span id="tip_title"> </span></strong></p>-->
+            <!--<p><span id="value">100</span></p>-->
+        <!--</div>-->
+        <!--<center><div id="bubbles"></div></center>-->
+
+        <!-- Table of Results -->
+        <h4>Table of Model Accuracies on Yelp Data</h4>
+        <center><table id="results" class="display" cellspacing="0" width="80%">
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>False Positive</th>
+                    <th>False Negative</th>
+                    <th>True Positive</th>
+                    <th>True Negative</th>
+                    <th>Positive Accuracy</th>
+                    <th>Negative Accuracy</th>
+                    <th>Cross Validated Accuracy</th>
+                    <th>Cross Validated AUC</th>
+                    <th>Training Set Accuracy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Random Forest</td>
+                    <td class="best">0.260</td>
+                    <td>0.495</td>
+                    <td class="best">0.541</td>
+                    <td>0.712</td>
+                    <td>0.491</td>
+                    <td class="best">0.755</td>
+                    <td class="best">0.646</td>
+                    <td>0.662</td>
+                    <td class="best">0.652</td>
+                </tr>
+                <tr>
+                    <td>Linear SVC</td>
+                    <td>0.332</td>
+                    <td>0.387</td>
+                    <td>0.528</td>
+                    <td class="best">0.740</td>
+                    <td>0.599</td>
+                    <td>0.661</td>
+                    <td>0.634</td>
+                    <td class="best">0.674</td>
+                    <td>0.647</td>
+                </tr>
+                <tr>
+                    <td>Logistic Regression</td>
+                    <td>0.374</td>
+                    <td class="best">0.370</td>
+                    <td>0.505</td>
+                    <td>0.737</td>
+                    <td class="best">0.618</td>
+                    <td>0.619</td>
+                    <td>0.615</td>
+                    <td>0.657</td>
+                    <td>0.628</td>
+                </tr>
+            </tbody>
+        </table></center>
+        <br>
+
+
+        <p>
+            The green cells indicate the best accuracies for each category.
+            It would appear that although Random Forest has some of the best accuracy scores out of the three, it is also
+            the most highly varying, with a positive accuracy rate of less than 50%.
+            Logistic Regression, on the other hand, tends to be very robust across all of the different scoring methods,
+            and it has the highest positive accuracy rate of nearly 62% (compared to Linear SVC's 66.1% and Random Forest's
+            49.1%).
+        </p>
+        <p>
+            For the applications of our project, some might argue for prioritizing positive accuracy, since the goal
+            of our model is to accurately predict whether a review is useful such that it can be placed where users
+            can easily see it. However, when we tried to weight our model on positive accuracy, we found that the
+            tradeoff in negative accuracy was unacceptably poor. After all, there is no point in making the useful
+            reviews more visible if it also bumps non-useful reviews.
+        </p>
+
+        <!-- Table of LogReg Accuracies after Positive Accuracy Weighting -->
+        <h4>Logistic Regression Accuracies: Biased in Favor of Positive Accuracy</h4>
+        <center><table id="weighted-results" class="display" cellspacing="0" width="80%">
+            <thead>
+                <tr>
+                    <th>Percentage from Balanced</th>
+                    <th>Positive Accuracy</th>
+                    <th>Change in Positive Accuracy</th>
+                    <th>Negative Accuracy</th>
+                    <th>Change in Negative Accuracy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1%</td>
+                    <td>0.672</td>
+                    <td> - </td>
+                    <td>0.529</td>
+                    <td> - </td>
+                </tr>
+                <tr>
+                    <td>2%</td>
+                    <td>0.728</td>
+                    <td class="inc">+ 0.056</td>
+                    <td>0.432</td>
+                    <td class="dec">- 0.097</td>
+                </tr>
+                <tr>
+                    <td>3%</td>
+                    <td>0.777</td>
+                    <td class="inc">+ 0.049</td>
+                    <td>0.339</td>
+                    <td class="dec">- 0.093</td>
+                </tr>
+                <tr>
+                    <td>4%</td>
+                    <td>0.822</td>
+                    <td class="inc">+ 0.045</td>
+                    <td>0.258</td>
+                    <td class="dec">- 0.081</td>
+                </tr>
+                <tr>
+                    <td>5%</td>
+                    <td>0.861</td>
+                    <td class="inc">+ 0.039</td>
+                    <td>0.188</td>
+                    <td class="dec">- 0.070</td>
+                </tr>
+            </tbody>
+        </table></center><br>
+
+
+        <!-- Line Graph of LogReg Accuracies after Positive Accuracy Weighting -->
+        <div class="row">
+            <center><div class="col-sm-8" id="bias-line"></div></center>
+        </div>
+
+        <p>
+            Although positive accuracy does increase, negative accuracy decreases at nearly twice the rate, making
+            a model biased in favor of positive accuracy unappealing.
+        </p>
+
     </div>
 
     <div id="section4" class="section">
@@ -202,6 +347,8 @@
 
 <!-- Visualization objects -->
 <script src="js/FreqBar.js"></script>
+<!--<script src="js/Bubbles.js"></script>-->
+<script src="js/BiasLine.js"></script>
 
 <!-- Load data, create visualizations -->
 <script src="js/main.js"></script>
