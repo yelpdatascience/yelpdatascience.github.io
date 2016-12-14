@@ -38,7 +38,7 @@ FreqBar.prototype.initVis = function() {
     vis.margin = {top: 20, right: 50, bottom: 10, left: 70};
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.right - vis.margin.left;
-    vis.height = 500 - vis.margin.top - vis.margin.bottom;
+    vis.height = 400 - vis.margin.top - vis.margin.bottom;
 
 
     // append drawing space
