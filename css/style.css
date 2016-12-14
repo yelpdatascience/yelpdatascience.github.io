@@ -21,9 +21,8 @@ h2 {
     font-weight: 200;
     padding-left: 50px;
     padding-right: 50px;
-
     text-align: center;
-    margin-bottom: 100px;
+    margin-bottom: 125px;
 }
 
 h3 {
@@ -136,8 +135,10 @@ nav.horizontal-page-navigation ul {
 
 nav.horizontal-page-navigation {
     width: 100%;
-    background-color: #ebebeb;
+    background-color: #0C0F0A;
     text-align: center;
+    font-family: 'Raleway', serif;
+    text-transform: uppercase;
     position: fixed;
     z-index: 99999;
 }
@@ -152,7 +153,7 @@ nav.horizontal-page-navigation li a {
     padding: 8px 16px;
     text-decoration: none;
     text-align:center;
-    color: #c00;
+    color: #EBEBEB;
 }
 
 nav.horizontal-page-navigation li a:hover {
