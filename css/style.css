@@ -277,6 +277,43 @@ td {
     stroke-width: 1.5px;
 }
 
+/* REVIEW TEXT */
+#useful-rev {
+    background-color:#F15C00;
+    margin: 60px;
+    color: white;
+}
+
+#funny-rev {
+    background-color:#41A700;
+    margin: 60px;
+    color: white;
+}
+
+#cool-rev {
+    background-color:#0097EC;
+    margin: 60px;
+    color: white;
+}
+
+#notUseful-rev {
+    background-color: #c97435;
+    margin: 60px;
+    color: white;
+}
+
+#notFunny-rev {
+    background-color: #547843;
+    margin: 60px;
+    color: white;
+}
+
+#notCool-rev {
+    background-color: #4889ba;
+    margin: 60px;
+    color: white;
+}
+
 /* FORCE DIAGRAM */
 
 .node {
