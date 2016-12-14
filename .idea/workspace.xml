@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e9865db-84e9-4bf3-bfce-350f4ad4dc99" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/style.css" afterPath="$PROJECT_DIR$/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/FreqBar.js" afterPath="$PROJECT_DIR$/js/FreqBar.js" />
-    </list>
+    <list default="true" id="7e9865db-84e9-4bf3-bfce-350f4ad4dc99" name="Default" comment="" />
     <ignored path="CS109a_Final_Project.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -236,12 +232,12 @@
       <option name="presentableId" value="Default" />
       <updated>1478304899035</updated>
       <workItem from="1478304900632" duration="115000" />
-      <workItem from="1481618660203" duration="10127000" />
+      <workItem from="1481618660203" duration="10143000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10242000" />
+    <option name="totallyTimeSpent" value="10258000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="171" y="28" width="1118" height="796" extended-state="0" />
