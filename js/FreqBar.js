@@ -35,7 +35,7 @@ FreqBar.prototype.initVis = function() {
 
     var vis = this;
 
-    vis.margin = {top: 20, right: 50, bottom: 10, left: 70};
+    vis.margin = {top: 20, right: 50, bottom: 10, left: 90};
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.right - vis.margin.left;
     vis.height = 400 - vis.margin.top - vis.margin.bottom;
@@ -90,7 +90,7 @@ FreqBar.prototype.initVis = function() {
     // Label the y axis
     vis.svg.append("text")
         .attr("class", "axis-label y-label")
-        .attr("transform", "translate(10, " + vis.height/2 + "), rotate(270)")
+        .attr("transform", "translate(" + vis.margin.left/3 + ", " + vis.height/2 + "), rotate(270)")
         .text("Frequency");
 
     vis.updateVis();

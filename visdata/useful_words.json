@@ -1,0 +1,202 @@
+[
+  {
+    "n_name": "like",
+    "total": 0.77575124
+  },
+  {
+    "n_name": "just",
+    "total": 0.652980768
+  },
+  {
+    "n_name": "said",
+    "total": 0.573358131
+  },
+  {
+    "n_name": "don",
+    "total": 0.554653033
+  },
+  {
+    "n_name": "told",
+    "total": 0.479497511
+  },
+  {
+    "n_name": "know",
+    "total": 0.45397699
+  },
+  {
+    "n_name": "came",
+    "total": 0.452380149
+  },
+  {
+    "n_name": "located",
+    "total": 0.440318494
+  },
+  {
+    "n_name": "started",
+    "total": 0.431129722
+  },
+  {
+    "n_name": "I'll",
+    "total": 0.430656916
+  },
+  {
+    "n_name": "bar",
+    "total": 0.424736131
+  },
+  {
+    "n_name": "review",
+    "total": 0.421533865
+  },
+  {
+    "n_name": "end",
+    "total": 0.420948654
+  },
+  {
+    "n_name": "need",
+    "total": 0.413656805
+  },
+  {
+    "n_name": 50,
+    "total": 0.410402928
+  },
+  {
+    "n_name": "actually",
+    "total": 0.406240425
+  },
+  {
+    "n_name": "called",
+    "total": 0.399516355
+  },
+  {
+    "n_name": "yelp",
+    "total": 0.394580507
+  },
+  {
+    "n_name": "think",
+    "total": 0.39288619
+  },
+  {
+    "n_name": "check",
+    "total": 0.391675604
+  },
+  {
+    "n_name": "want",
+    "total": 0.390536832
+  },
+  {
+    "n_name": "didn't",
+    "total": 0.390159385
+  },
+  {
+    "n_name": "pretty",
+    "total": 0.388000223
+  },
+  {
+    "n_name": "sauce",
+    "total": 0.387634857
+  },
+  {
+    "n_name": "business",
+    "total": 0.386697824
+  },
+  {
+    "n_name": "highly",
+    "total": -0.187603402
+  },
+  {
+    "n_name": "thank",
+    "total": -0.188095919
+  },
+  {
+    "n_name": "pizza",
+    "total": -0.1934005
+  },
+  {
+    "n_name": "fast",
+    "total": -0.19368349
+  },
+  {
+    "n_name": "fantastic",
+    "total": -0.194391441
+  },
+  {
+    "n_name": "outstanding",
+    "total": -0.201288983
+  },
+  {
+    "n_name": "professional",
+    "total": -0.210905823
+  },
+  {
+    "n_name": "courteous",
+    "total": -0.222093442
+  },
+  {
+    "n_name": "breakfast",
+    "total": -0.243679615
+  },
+  {
+    "n_name": "staff",
+    "total": -0.248105029
+  },
+  {
+    "n_name": "helpful",
+    "total": -0.282820082
+  },
+  {
+    "n_name": "recommend",
+    "total": -0.299907562
+  },
+  {
+    "n_name": "atmosphere",
+    "total": -0.308786337
+  },
+  {
+    "n_name": "delicious",
+    "total": -0.315218827
+  },
+  {
+    "n_name": "wonderful",
+    "total": -0.338406958
+  },
+  {
+    "n_name": "friendly",
+    "total": -0.36618625
+  },
+  {
+    "n_name": "love",
+    "total": -0.417234991
+  },
+  {
+    "n_name": "amazing",
+    "total": -0.427999997
+  },
+  {
+    "n_name": "excellent",
+    "total": -0.490102525
+  },
+  {
+    "n_name": "awesome",
+    "total": -0.561670153
+  },
+  {
+    "n_name": "service",
+    "total": -0.584454822
+  },
+  {
+    "n_name": "food",
+    "total": -0.617450165
+  },
+  {
+    "n_name": "best",
+    "total": -0.628270925
+  },
+  {
+    "n_name": "good",
+    "total": -0.793179688
+  },
+  {
+    "n_name": "great",
+    "total": -1.146274591
+  }
+]

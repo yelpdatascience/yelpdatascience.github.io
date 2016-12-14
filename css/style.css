@@ -57,6 +57,8 @@ p {
 }
 
 ol {
+    padding-left: 100px;
+    margin-right: 20px;
     font-size: 18px;
 }
 
@@ -115,15 +117,20 @@ label {
     border: 2px solid #CC0000;
 }
 
-.btn:hover {
-    background-color: #CC0000;
+.btn:hover,
+.btn.active:hover {
+    background-color: #9b0000;
     color: white;
+    border: 2px solid #9b0000;
 }
 
-.btn:active {
+.btn.focus,
+.btn.active {
     background-color: #CC0000;
     color: white;
+    border: 2px solid #CC0000;
 }
+
 
 
 .axis {
