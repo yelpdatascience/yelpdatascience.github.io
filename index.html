@@ -45,22 +45,22 @@
         <div class="row">
             <div class="col-sm-8">
                 <p>
-                    Most people are familiar with the popular website <a href="https://www.yelp.com">Yelp</a>, which
-                    connects people with local restaurants and businesses and is ranked #51 in US web-traffic.
-                    The lifeblood of the website is its extensive reserve of reviews, which allow users to do anything
-                    from choosing their entree at dinner to choosing a facility for a medical procedure. In addition to
-                    reading about other users' experience at a given location, users can also rate each others' reviews
-                    as 'Useful,' 'Funny,' or 'Cool.'
+                    Most people are familiar with the popular website <a href="https://www.yelp.com">Yelp</a>, which connects
+                    people with local restaurants and businesses and is ranked #51 in US web-traffic. The lifeblood of the website
+                    is its extensive archive of reviews, which empowers users to make informed choices. Whether the user is selecting
+                    an entree at a trendy new restaurant or considering facilities for a sophisticated medical procedure, Yelp offers
+                    a vast range of crowdsourced insights. After reading others’ reviews of businesses, users can elect to rate those
+                    reviews as 'Useful,' 'Funny,' or 'Cool.'
                 </p>
 
-                <p>For our project, we decided to investigate exactly how users rated other users’ reviews.
-                    In particular, we wanted to investigate what made a post helpful to other users: does word length
-                    impact the usefulness of a post? How about the ranking of the restaurant in question? By determining
-                    which characteristics of reviews contribute to their usefulness, we can create a model to predict a
-                    review's usefulness given certain characteristics. Such a model would help sites like Yelp give its
-                    users the best possible experience by highlighting the most useful reviews for a given business.
-                    This could also allow companies like Yelp to determine in what order reviews should be shown,
-                    rather than showing relatively useless reviews or burying the useful ones under other posts.
+                <p>
+                    For our project, we decided to investigate how and why users rate reviews as belonging to these three categories.
+                    In particular, we wanted to investigate what made a post useful to other users. By determining which characteristics
+                    of reviews contribute to their usefulness, we aimed to create a model capable of predicting a review's usefulness
+                    given its content. Such a model would help sites like Yelp give its users the best possible experience by
+                    highlighting the reviews most likely to be useful for a given business, even if those reviews have not been voted
+                    on at all. This could also allow companies like Yelp to better determine the order in which reviews should be shown,
+                    rather than blindly prioritizing reviews less likely to be useful to consumer decision making.
                 </p>
             </div>
             <div class="col-sm-4">
@@ -72,12 +72,10 @@
     <div id="section2" class="section">
         <h3>Data Collection & Initial Visualizations</h3>
         <p>
-            To start, we downloaded a large archive of Yelp reviews (about 2 million total) from a Yelp-sponsored data
-            competition page. To make the data easier to work with, we chose to sample only those reviews which were
-            published in 2015 (about 600,000 total). After some simple cleaning to remove duplicates and verify the
-            data’s integrity, we began initial data visualization. Our first histogram of a sample of 50,000 reviews
-            from the data revealed the following:
-
+            To start, we downloaded a large archive of Yelp reviews (about 2 million total) from a Yelp-sponsored data competition page.
+            To make the data easier to work with, we chose to sample only those reviews which were published in 2015 (about 600,000
+            total). After some simple cleaning to remove duplicates and verify the data’s integrity, we began initial data visualization.
+            Our first histogram of a sample of 50,000 reviews from the data revealed the following:
         </p>
 
         <!--Bar graph for frequency of number of votes -->
@@ -110,17 +108,19 @@
         <p>
             Clearly, many reviews are not receiving any votes for usefulness, coolness, or funniness, which indicates the
             following challenges to consider with this dataset:
-
-        <ol>
-        <li>Our model must be capable of dealing with large training and test sets due to the massive volume of reviews published on Yelp</li>
-        <li>Due to the nature of Yelp’s review rating system, our training data is inherently flawed – reviews might not receive votes
-            because they are:</li>
-            <ol type="a">
-                <li>actually not useful/funny/cool (this is optimal), or</li>
-                <li>despite being useful/funny/cool, the review simply did not receive any exposure and so received zero votes.</li>
+    </p>
+            <ol>
+            <li>Our model must be capable of dealing with large training and test sets due to the massive volume of reviews published on Yelp</li>
+            <li>Due to the nature of Yelp’s review rating system, our training data is inherently flawed – reviews might not receive votes
+                because they are:</li>
+                <ol type="a">
+                    <li>actually not useful/funny/cool (this is optimal), or</li>
+                    <li>despite being useful/funny/cool, the review simply did not receive any exposure and so received zero votes.</li>
+                </ol>
             </ol>
-        </ol>
 
+        <p>
+            With these confounding factors in mind, we moved into the process of model selection.
         </p>
 
     </div>
@@ -194,29 +194,31 @@
         </div>
 
         <p>
-            Given that we were working with text data, our first step was to get the reviews into a form interpretable
-            by our model. After experimenting with a number of methods to extract features from text, we settled on
-            non-binary count vectorization with Tf-idf weighting, a word-based tokenizer, and a no stemming algorithm.
-            This configuration seemed to give the best and most stable results overall. We found that using stemming
-            algorithms, word pairs, and other enhancements failed to boost our results.
+            Given that we were working with text data, our first step was to get the reviews into a form interpretable by our model.
+            After experimenting with a number of methods to extract features from text, we settled on non-binary count vectorization
+            with Tf-idf weighting, a word-based tokenizer, and a no stemming algorithm. This configuration seemed to give the best
+            and most stable results overall. We found that using stemming algorithms, word pairs, and other enhancements failed to boost
+            our results. We tried weighting observations according to how many votes of a particular kind they received, but ultimately
+            found that our best results came from simply considering each review's classification in binary terms (ex. Did receive a
+            helpfulness vote vs. Did not receive a helpfulness vote).
         </p>
         <p>
-            After vectorizing the reviews we tried 4 different classification algorithms for sentiment analysis: Random
-            Forests, AdaBoost with Random Forests and Logistic Regression, Linear SVC, and Logistic Regression. Each
-            algorithm was fit and tested on all three different comment types (funny, cool and useful). Class weights
-            were set to “balanced” in each case to compensate for our imbalanced sample: only a minority reviews
-            received any votes. Unfortunately, Random Forests and AdaBoost did not perform particularly well on our
-            dataset despite intensive tuning. Linear SVC and Logistic Regression performed comparably well, so we
-            went on to compare their finer points.
+            After vectorizing the reviews we tried 4 different classification algorithms for sentiment analysis: Random Forests,
+            AdaBoost with Random Forests and Logistic Regression, Linear SVC, and Logistic Regression. Each algorithm was fit and
+            tested on all three different comment types (funny, cool and useful). Class weights were set to “balanced” in each case to
+            compensate for our imbalanced sample: only a minority of reviews received any votes at all. Other weighting techniques
+            produced disadvantageous trade offs as described below. Unfortunately, Random Forests and AdaBoost did not perform
+            particularly well on our dataset despite intensive tuning. Linear SVC and Logistic Regression performed comparably well,
+            so we went on to compare their finer points.
         </p>
         <p>
-            Linear SVC seemed more sensitive to its tuning parameter than Logistic Regression. With minor changes to the
-            parameter, Linear SVC often fluctuated in accuracy for both classes. Furthermore, as the samples tested
-            became larger Linear SVC took significantly longer fit times than Logistic Regression. Finally – and perhaps
-            most importantly for our project – Logistic Regression can natively provide class probabilities while making
-            predictions. This would be extremely useful in ranking reviews that have not yet been voted on. While SVC is
-            capable of making probability estimates, it does so through an extremely expensive cross validation procedure.
-            As such, we decided that Logistic Regression provided the best model for our particular objectives.
+            Linear SVC seemed more sensitive to its tuning parameter than Logistic Regression. With minor changes to the parameter,
+            Linear SVC often fluctuated in accuracy for both classes. Furthermore, as the samples tested became larger Linear SVC
+            experienced significantly longer fit times than Logistic Regression. Finally – and perhaps most importantly for our project
+            – Logistic Regression can natively provide class probabilities while making predictions. This would be extremely useful
+            in ranking reviews that have not yet been voted on. While SVC is capable of making probability estimates, it does so through
+            an extremely expensive cross validation procedure. As such, we decided that Logistic Regression provided the best model for
+            our particular objectives.
         </p>
 
         <!--<div id="tooltip" class="hidden" center = "right">-->
@@ -285,19 +287,20 @@
 
 
         <p>
-            The green cells indicate the best accuracies for each category.
-            It would appear that although Random Forest has some of the best accuracy scores out of the three, it is also
-            the most highly varying, with a positive accuracy rate of less than 50%.
-            Logistic Regression, on the other hand, tends to be very robust across all of the different scoring methods,
-            and it has the highest positive accuracy rate of nearly 62% (compared to Linear SVC's 66.1% and Random Forest's
-            49.1%).
+            The table above shows the various accuracies of our models on the Yelp Dataset. The green cells indicate the best accuracies
+            for each category. It would appear that although Random Forest has some of the best accuracy scores out of the three, it is
+            also the most highly varying, with a positive accuracy rate of less than 50%. Logistic Regression, on the other hand, tends
+            to be very robust across all of the different scoring methods, and it has the highest positive accuracy rate of nearly 62%
+            (compared to Linear SVC's 59.9% and Random Forest's 49.1%).
         </p>
         <p>
-            For the applications of our project, some might argue for prioritizing positive accuracy, since the goal
-            of our model is to accurately predict whether a review is useful such that it can be placed where users
-            can easily see it. However, when we tried to weight our model on positive accuracy, we found that the
-            tradeoff in negative accuracy was unacceptably poor. After all, there is no point in making the useful
-            reviews more visible if it also bumps non-useful reviews.
+            For the applications of our project, some might argue for prioritizing positive accuracy, since the goal of our model is to
+            accurately predict whether a review is useful such that it can be placed where users can easily see it. However, when we
+            tried to weight our model on positive accuracy, we found that the tradeoff in negative accuracy was unacceptably poor.
+            After all, there is no point in making the useful reviews more visible if it also bumps non-useful reviews. Furthermore,
+            our model is intended to be used probabilistically – even if a review falls under the .50 probability threshold needed to
+            label it as being positive, its positive class probability estimate can nonetheless distinguish it from other reviews
+            labeled as negative.
         </p>
 
         <!-- Table of LogReg Accuracies after Positive Accuracy Weighting -->
@@ -366,31 +369,35 @@
 
     <div id="section4" class="section">
         <h3>Conclusion</h3>
-        <p>Although we feel that we pushed the limits of our models, the confounding factors in our data capped our
-            cross validated accuracy in the low to mid 60 percent range for both classes. These factors are inherently
-            arbitrary in nature which reflected in the tuning for Random Forests and AdaBoost. Despite, the weighting
-            and biases we added to our model, the non-concrete nature of what humans view as funny, cool, or useful
-            rendered those efforts useless. Yet the relationship between the review and how it’s perceived is not
-            completely arbitrary as evidenced by our success with LinearSVC and Logistic regression. Consistent key
-            words and persistent sentiment analysis for reviews proved critical for these models and they were able to
-            demonstrate their strengths through their respective cross-validation procedures and class prediction abilities.
+        <p>
+            Although we feel that we pushed the limits of our models, the confounding factors in our data capped our cross validated
+            accuracy in the low to mid 60 percent range for both classes. These factors are inherently arbitrary in nature, which was
+            reflected in the tuning for Random Forests and AdaBoost. Despite the weighting and biases we added to our model, the
+            subjectivity of what humans consider to be funny, cool, or useful rendered those efforts useless. Our task was more
+            difficult than simple sentiment analysis, as positivity and negativity are more distinct and easily differentiable
+            categories than helpful and unhelpful.
         </p>
         <p>
-            This is further evidenced as we went beyond the scope of our project to test on Amazon reviews, for which
-            the rating system differs. Users on Amazon can rate reviews as either "helpful" or "not helpful." This
-            dataset enabled us to target reviews that had been liberally rated, and we secured a large sample pool of helpful
-            (voted helpful over 50%) vs. non-helpful reviews. When tested on this dataset, our models achieved positive
-            and negative accuracies between 72% and 80%. However, the fact that our model produced meaningful (if
-            important) results implies that it would provide a significant improvement over random or chronological
-            presentation of voteless reviews.
+            Yet the relationship between a review’s content and how it is perceived by other users is not completely arbitrary as
+            evidenced by our relative success with LinearSVC and Logistic regression. Consistent keywords and results for reviews
+            demonstrated our models’ strengths through their respective cross-validation procedures. Clear trends are evident within
+            the data, and should be leveraged to the greatest possible extent despite their imperfection.
         </p>
         <p>
-            The benefits of a system like this are very apparent. Not only would websites be able to score and rank
-            unrated reviews, companies would have a means of seeing common trends on what makes a review helpful. This
-            could manifest itself in advertising, with business emphasizing features commonly discussed in reviews,
-            product innovation, to meet the needs of that have been previously ignored, and many other areas as valued
-            information assets. Even without a perfect accuracy, a wealth of information can always be used to inform
-            important decisions.
+            This is further evidenced as we went beyond the scope of our project to test on Amazon reviews, for which the rating system
+            differs. Users on Amazon can rate reviews as either "helpful" or "not helpful." This dataset enabled us to target reviews
+            that had been provably rated a large number of times, and we secured a large sample pool of helpful (voted helpful over 50%)
+            vs. non-helpful reviews. When tested on this dataset, our models achieved positive and negative accuracies between 72% and
+            80%. This speaks to the advantages offered by a review rating system that accommodates negative votes: by putting a
+            denominator on helpfulness ratings, they make it far easier to train models to recognize useful and not useful as different
+            classes.
+        </p>
+        <p>
+            The benefits of a usefulness ranking model like the one we propose are extensive. Websites implementing such a model would
+            be able to score and rank unrated or underexposed reviews, and companies would gain greater insight into what makes a review
+            helpful to consumer decision making. This could have applications in advertising and development, empowering businesses to
+            emphasize features commonly discussed in reviews through product innovation. Even in the presence of confounding factors, a
+            wealth of information such as that offered by Yelp’s review corpus can be leveraged into powerful decision-making tools.
         </p>
     </div>
 
