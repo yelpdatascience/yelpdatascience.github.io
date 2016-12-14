@@ -1,12 +1,13 @@
 /** BODY **/
 
 body {
-    font-family: Calibri;
+    font-family: 'Roboto', sans-serif;
     padding-left: 50px;
     padding-right: 50px;
 }
 
 h1 {
+    font-family: 'Bitter', serif;
     font-size: 65px;
     font-weight: 200;
     text-align: center;
