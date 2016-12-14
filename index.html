@@ -5,10 +5,11 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CS109a Final Project - User Ratings and Reviews</title>
+    <link rel='shortcut icon' href='img/favicon.ico' type='image/x-icon' >
 
     <!-- CSS libraries -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Bitter|Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:500|Roboto" rel="stylesheet">
 
     <!-- Custom CSS code -->
     <link rel="stylesheet" href="css/style.css">
@@ -21,38 +22,43 @@
         <ul class="menu">
             <li><a href="#top">Top</a></li>
             <li><a href="#section1">Introduction</a></li>
-            <li><a href="#section2">Data Collection & Initial Visualizations</a></li>
+            <li><a href="#section2">Data & Visualizations</a></li>
             <li><a href="#section3">Models</a></li>
-            <li><a href="#section4">Conclusions</a></li>
+            <li><a href="#section4">Conclusion</a></li>
             <li><a href="#section5">Appendix</a></li>
         </ul>
     </nav>
 
-    <div id="top" class="section">
-    <h1>Reviewing Reviews: A Study of the Helpfulness of Yelp User Reviews</h1>
-        <h3><center>John Bowers, Michaela Kane, Jarele Soyinka, & Nisha Swarup</center></h3>
 
+    <div id="top" class="introduction">
+        <header>
+            <h1>Reviewing Reviews</h1>
+            <h2>A Study of the Helpfulness of Yelp User Reviews</h2>
+            <h4>John Bowers, Michaela Kane, Jarele Soyinka, & Nisha Swarup</h4>
+        </header>
     </div>
 
     <div id="section1" class="section">
-        <h2>Introduction & Objectives</h2>
+        <h3>Introduction & Objectives</h3>
         <div class="row">
             <div class="col-sm-8">
                 <p>
-                    Most people are familiar with the popular business-ranking site <a href="https://www.yelp.com">Yelp</a>, most often used to search
-                    for popular restaurants or locations in a given area. In addition to reading about other users' experience at a given site,
-                    individuals can also rate each others' reviews as 'Useful,' 'Funny,' or 'Cool.'
+                    Most people are familiar with the popular website <a href="https://www.yelp.com">Yelp</a>, which
+                    connects people with local restaurants and businesses and is ranked #51 in US web-traffic.
+                    The lifeblood of the website is its extensive reserve of reviews, which allow users to do anything
+                    from choosing their entree at dinner to choosing a facility for a medical procedure. In addition to
+                    reading about other users' experience at a given location, users can also rate each others' reviews
+                    as 'Useful,' 'Funny,' or 'Cool.'
                 </p>
 
                 <p>For our project, we decided to investigate exactly how users rated other users’ reviews.
-                    In particular, we wanted to investigate what made a post helpful to other users: does word length impact the usefulness of a
-                    post? How about the ranking of the restaurant in question? In this study, we hope to determine what sorts of reviews are most
-                    useful to other users. By determining what characteristics of reviews  contribute to their usefulness, we can create a model
-                    to predict a review's usefulness given certain characteristics. This can help sites like Yelp give their users the best
-                    experience by providing them with what are considered the most useful reviews for a given business. By creating a model
-                    to predict the usefulness of a review given the unique characteristics of that review, we hope to help companies such as
-                    Yelp determine in what order reviews should be shown, rather than showing relatively useless reviews or burying the useful ones
-                    under other posts.
+                    In particular, we wanted to investigate what made a post helpful to other users: does word length
+                    impact the usefulness of a post? How about the ranking of the restaurant in question? By determining
+                    which characteristics of reviews contribute to their usefulness, we can create a model to predict a
+                    review's usefulness given certain characteristics. Such a model would help sites like Yelp give its
+                    users the best possible experience by highlighting the most useful reviews for a given business.
+                    This could also allow companies like Yelp to determine in what order reviews should be shown,
+                    rather than showing relatively useless reviews or burying the useful ones under other posts.
                 </p>
             </div>
             <div class="col-sm-4">
@@ -62,19 +68,20 @@
     </div>
 
     <div id="section2" class="section">
-        <h2>Data Collection & Initial Visualizations</h2>
+        <h3>Data Collection & Initial Visualizations</h3>
         <p>
-            To start, we downloaded a large archive of Yelp reviews (about 2 million total) from a Yelp-sponsored data competition page. To make
-            the data easier to work with, we chose to sample only those reviews which were published in 2015 (about 600,000 total).
-            After some simple cleaning to remove duplicates and verify the data’s integrity, we began initial data visualization. Our first histogram of
-            a sample of 50,000 reviews from the data revealed the following:
+            To start, we downloaded a large archive of Yelp reviews (about 2 million total) from a Yelp-sponsored data
+            competition page. To make the data easier to work with, we chose to sample only those reviews which were
+            published in 2015 (about 600,000 total). After some simple cleaning to remove duplicates and verify the
+            data’s integrity, we began initial data visualization. Our first histogram of a sample of 50,000 reviews
+            from the data revealed the following:
 
         </p>
 
         <!--Bar graph for frequency of number of votes -->
         <div class="row">
-            <h3>Frequency of <span id="type"></span> Votes per Post</h3>
-            <h4>Number of Posts with 0 Votes: <span id="zeros"></span></h4>
+            <h4>Frequency of <span id="type"></span> Votes per Post</h4>
+            <h5>Number of Posts with 0 Votes: <span id="zeros"></span></h5>
         </div>
 
         <div class="row">
@@ -99,8 +106,8 @@
 
 
         <p>
-            Clearly, many reviews are not receiving any votes for usefulness, coolness, or funniness, which brings us to our list of issues to consider
-            when dealing with this dataset:
+            Clearly, many reviews are not receiving any votes for usefulness, coolness, or funniness, which indicates the
+            following challenges to consider with this dataset:
 
         <ol>
         <li>Our model must be capable of dealing with large training and test sets due to the massive volume of reviews published on Yelp</li>
@@ -116,26 +123,30 @@
     </div>
 
     <div id="section3" class="section">
-        <h2>Models</h2>
+        <h3>Models</h3>
         <p>
-            Given that we were working with text data, our first step was to get the reviews into a form interpretable by our model.
-            After experimenting with a number of methods, we settled on non-binary count vectorization with Tf-idf weighting, a
-            word-based tokenizer, and a no stemming algorithm. This configuration seemed to give the best and most stable results overall.
-            It seems that using stemming algorithms, word pairs, and other enhancements failed to boost our results.
+            Given that we were working with text data, our first step was to get the reviews into a form interpretable
+            by our model. After experimenting with a number of methods to extract features from text, we settled on
+            non-binary count vectorization with Tf-idf weighting, a word-based tokenizer, and a no stemming algorithm.
+            This configuration seemed to give the best and most stable results overall. We found that using stemming
+            algorithms, word pairs, and other enhancements failed to boost our results.
         </p>
         <p>
-            After vectorizing the reviews we tried 4 different classification algorithms for sentiment analysis: Random Forests, AdaBoost
-            with Random Forests and Logistic Regression, Linear SVC, and Logistic Regression. Each algorithm was fit and tested on all three
-            different comment types. Class weights were set to “balanced” in each case to compensate for our imbalanced sample: only a minority
-            reviews received any votes. Unfortunately, Random Forests and AdaBoost did not perform particularly well on our dataset despite intensive
-            tuning. Linear SVC and Logistic Regression performed comparably well, so we compared their finer points.
+            After vectorizing the reviews we tried 4 different classification algorithms for sentiment analysis: Random
+            Forests, AdaBoost with Random Forests and Logistic Regression, Linear SVC, and Logistic Regression. Each
+            algorithm was fit and tested on all three different comment types (funny, cool and useful). Class weights
+            were set to “balanced” in each case to compensate for our imbalanced sample: only a minority reviews
+            received any votes. Unfortunately, Random Forests and AdaBoost did not perform particularly well on our
+            dataset despite intensive tuning. Linear SVC and Logistic Regression performed comparably well, so we
+            went on to compare their finer points.
         </p>
         <p>
-            Linear SVC seemed more sensitive to its tuning parameter than Logistic Regression, often fluctuating in accuracy for both
-            classes with minor changes. Furthermore, as the samples tested became larger Linear SVC experienced significantly longer fit times than
-            Logistic Regression. Finally – and perhaps most importantly for our project – Logistic Regression can natively provide class
-            probabilities while making predictions. This would be extremely useful in ranking reviews that have not yet been voted on.
-            While SVC is capable of making probability estimates, it does so through an extremely expensive cross validation procedure.
+            Linear SVC seemed more sensitive to its tuning parameter than Logistic Regression. With minor changes to the
+            parameter, Linear SVC often fluctuated in accuracy for both classes. Furthermore, as the samples tested
+            became larger Linear SVC took significantly longer fit times than Logistic Regression. Finally – and perhaps
+            most importantly for our project – Logistic Regression can natively provide class probabilities while making
+            predictions. This would be extremely useful in ranking reviews that have not yet been voted on. While SVC is
+            capable of making probability estimates, it does so through an extremely expensive cross validation procedure.
             As such, we decided that Logistic Regression provided the best model for our particular objectives.
         </p>
 
@@ -222,7 +233,7 @@
     </div>
 
     <div id="section4" class="section">
-        <h2>Conclusion</h2>
+        <h3>Conclusion</h3>
         <p>While we feel that we pushed the limits of our models, the confounding factors in our data capped our cross validated accuracy in the low
             to mid 60 percent range for both classes. These factors are inherently arbitrary in nature which reflected in the tuning for Random
             Forests and AdaBoost. Despite, the weighting and biases we pushed to our model, the non-concrete nature of what humans view as funny, cool,

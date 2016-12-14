@@ -9,12 +9,33 @@ h1 {
     padding-top: 100px;
     padding-left: 50px;
     font-size: 65px;
+    padding-right: 50px;
+    line-height: 1.5;
+
+}
+
+h1 {
+    font-family: 'Raleway', serif;
+    font-size: 80px;
     font-weight: 200;
+    text-transform: uppercase;
+    padding-left: 50px;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 h2 {
+    font-family: 'Raleway', serif;
+    font-size: 50px;
+    font-weight: 200;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: center;
+    margin-bottom: 125px;
+}
+
+h3 {
+    font-family: 'Raleway', serif;
     padding-left: 50px;
     font-size: 60px;
     font-weight: 100;
@@ -25,16 +46,20 @@ h2 {
     color: white;
 }
 
-h3 {
+h4 {
+    font-family: 'Raleway', serif;
     padding-left: 50px;
+    padding-right: 50px;
     font-size: 40px;
     font-weight: 200;
     text-align: left;
     margin-top: 50px;
     margin-bottom: 10px;
+    text-align: center;
 }
 
-h4 {
+h5 {
+    font-family: 'Raleway', serif;
     padding-left: 50px;
     font-size: 32px;
     font-weight: 200;
@@ -62,6 +87,48 @@ ol {
     font-size: 18px;
 }
 
+
+.introduction {
+    height:100vh;
+    width: 100vw;
+    background:
+        linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, .45),
+          rgba(0, 0, 0, .65)
+        ),
+        url("../img/header_image.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
+}
+
+.introduction > header {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 10px;
+}
+.introduction > header > h1 {
+  margin: 10px;
+  color: white;
+  text-shadow: 0 1px 0 black;
+}
+.introduction > header > h2 {
+  margin: 10px;
+  color: white;
+  text-shadow: 0 1px 0 black;
+}
+.introduction > header > h4 {
+  margin: 10px;
+  color: white;
+  text-shadow: 0 1px 0 black;
+}
+
+
 .section {
     padding-top: 5px;
 }
@@ -79,8 +146,10 @@ nav.horizontal-page-navigation ul {
 
 nav.horizontal-page-navigation {
     width: 100%;
-    background-color: #ebebeb;
+    background-color: #0C0F0A;
     text-align: center;
+    font-family: 'Raleway', serif;
+    text-transform: uppercase;
     position: fixed;
     z-index: 99999;
 }
@@ -95,7 +164,7 @@ nav.horizontal-page-navigation li a {
     padding: 8px 16px;
     text-decoration: none;
     text-align:center;
-    color: #c00;
+    color: #EBEBEB;
 }
 
 nav.horizontal-page-navigation li a:hover {
