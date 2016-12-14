@@ -244,6 +244,30 @@ td {
     background-color: #cdeec2;
 }
 
+.inc {
+    color: #008500;
+    background-color: #cdeec2;
+}
+
+.dec {
+    color: #ce0000;
+    background-color: #ffdad6;
+}
+
+
+
+/* LINE GRAPH */
+.posLine {
+     fill: none;
+     stroke: #008500;
+     stroke-width: 1.5px;
+ }
+
+.negLine {
+    fill: none;
+    stroke: #ce0000;
+    stroke-width: 1.5px;
+}
 
 /* FORCE DIAGRAM */
 

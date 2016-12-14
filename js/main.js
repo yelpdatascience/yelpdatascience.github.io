@@ -1,12 +1,13 @@
 // global variables for visualizations
 var freqBar,
-    bubbles;
+    bubbles,
+    biasLine;
 
 
 // Initialize data
 loadData();
 
-// Load CSV file
+// Load files
 function loadData() {
 
     queue()
@@ -14,7 +15,8 @@ function loadData() {
         .defer(d3.csv, "visdata/funny_counts.csv")
         .defer(d3.csv, "visdata/cool_counts.csv")
         .defer(d3.json, "visdata/useful_words.json")
-        .await(function(error, usefulCounts, funnyCounts, coolCounts, wordData) {
+        .defer(d3.csv, "visdata/bias_accuracies.csv")
+        .await(function(error, usefulCounts, funnyCounts, coolCounts, wordData, biasData) {
 
             // clean data and make it numeric
             usefulCounts.forEach(function(d){
@@ -30,10 +32,18 @@ function loadData() {
                 d.freq = +d.freq;
             });
 
+            biasData.forEach(function(d) {
+                d.pctChange = +d.pctChange;
+                d.posAcc = +d.posAcc;
+                d.negAcc = +d.negAcc;
+            });
+
+            console.log(biasData);
 
             // Instantiate visualizations
             freqBar = new FreqBar("freq-bar", usefulCounts, funnyCounts, coolCounts);
-            bubbles = new Bubbles("bubbles", wordData);
+            // bubbles = new Bubbles("bubbles", wordData);
+            biasLine = new BiasLine("bias-line", biasData);
 
     });
 }

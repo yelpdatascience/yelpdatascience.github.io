@@ -157,7 +157,7 @@
         <!--<center><div id="bubbles"></div></center>-->
 
         <!-- Table of Results -->
-        <h3>Table of Model Accuracies on Yelp Data</h3>
+        <h4>Table of Model Accuracies on Yelp Data</h4>
         <center><table id="results" class="display" cellspacing="0" width="80%">
             <thead>
                 <tr>
@@ -212,6 +212,7 @@
                 </tr>
             </tbody>
         </table></center>
+        <br>
 
 
         <p>
@@ -228,6 +229,68 @@
             can easily see it. However, when we tried to weight our model on positive accuracy, we found that the
             tradeoff in negative accuracy was unacceptably poor. After all, there is no point in making the useful
             reviews more visible if it also bumps non-useful reviews.
+        </p>
+
+        <!-- Table of LogReg Accuracies after Positive Accuracy Weighting -->
+        <h4>Logistic Regression Accuracies: Biased in Favor of Positive Accuracy</h4>
+        <center><table id="weighted-results" class="display" cellspacing="0" width="80%">
+            <thead>
+                <tr>
+                    <th>Percentage from Balanced</th>
+                    <th>Positive Accuracy</th>
+                    <th>Change in Positive Accuracy</th>
+                    <th>Negative Accuracy</th>
+                    <th>Change in Negative Accuracy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1%</td>
+                    <td>0.672</td>
+                    <td> - </td>
+                    <td>0.529</td>
+                    <td> - </td>
+                </tr>
+                <tr>
+                    <td>2%</td>
+                    <td>0.728</td>
+                    <td class="inc">+ 0.056</td>
+                    <td>0.432</td>
+                    <td class="dec">- 0.097</td>
+                </tr>
+                <tr>
+                    <td>3%</td>
+                    <td>0.777</td>
+                    <td class="inc">+ 0.049</td>
+                    <td>0.339</td>
+                    <td class="dec">- 0.093</td>
+                </tr>
+                <tr>
+                    <td>4%</td>
+                    <td>0.822</td>
+                    <td class="inc">+ 0.045</td>
+                    <td>0.258</td>
+                    <td class="dec">- 0.081</td>
+                </tr>
+                <tr>
+                    <td>5%</td>
+                    <td>0.861</td>
+                    <td class="inc">+ 0.039</td>
+                    <td>0.188</td>
+                    <td class="dec">- 0.070</td>
+                </tr>
+            </tbody>
+        </table></center><br>
+
+
+        <!-- Line Graph of LogReg Accuracies after Positive Accuracy Weighting -->
+        <div class="row">
+            <center><div class="col-sm-8" id="bias-line"></div></center>
+        </div>
+
+        <p>
+            Although positive accuracy does increase, negative accuracy decreases at nearly twice the rate, making
+            a model biased in favor of positive accuracy unappealing.
         </p>
 
     </div>
@@ -278,7 +341,8 @@
 
 <!-- Visualization objects -->
 <script src="js/FreqBar.js"></script>
-<script src="js/Bubbles.js"></script>
+<!--<script src="js/Bubbles.js"></script>-->
+<script src="js/BiasLine.js"></script>
 
 <!-- Load data, create visualizations -->
 <script src="js/main.js"></script>
