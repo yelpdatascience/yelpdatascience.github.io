@@ -124,24 +124,28 @@
     <div id="section3" class="section">
         <h3>Models</h3>
         <p>
-            Given that we were working with text data, our first step was to get the reviews into a form interpretable by our model.
-            After experimenting with a number of methods, we settled on non-binary count vectorization with Tf-idf weighting, a
-            word-based tokenizer, and a no stemming algorithm. This configuration seemed to give the best and most stable results overall.
-            It seems that using stemming algorithms, word pairs, and other enhancements failed to boost our results.
+            Given that we were working with text data, our first step was to get the reviews into a form interpretable
+            by our model. After experimenting with a number of methods to extract features from text, we settled on
+            non-binary count vectorization with Tf-idf weighting, a word-based tokenizer, and a no stemming algorithm.
+            This configuration seemed to give the best and most stable results overall. We found that using stemming
+            algorithms, word pairs, and other enhancements failed to boost our results.
         </p>
         <p>
-            After vectorizing the reviews we tried 4 different classification algorithms for sentiment analysis: Random Forests, AdaBoost
-            with Random Forests and Logistic Regression, Linear SVC, and Logistic Regression. Each algorithm was fit and tested on all three
-            different comment types. Class weights were set to “balanced” in each case to compensate for our imbalanced sample: only a minority
-            reviews received any votes. Unfortunately, Random Forests and AdaBoost did not perform particularly well on our dataset despite intensive
-            tuning. Linear SVC and Logistic Regression performed comparably well, so we compared their finer points.
+            After vectorizing the reviews we tried 4 different classification algorithms for sentiment analysis: Random
+            Forests, AdaBoost with Random Forests and Logistic Regression, Linear SVC, and Logistic Regression. Each
+            algorithm was fit and tested on all three different comment types (funny, cool and useful). Class weights
+            were set to “balanced” in each case to compensate for our imbalanced sample: only a minority reviews
+            received any votes. Unfortunately, Random Forests and AdaBoost did not perform particularly well on our
+            dataset despite intensive tuning. Linear SVC and Logistic Regression performed comparably well, so we
+            went on to compare their finer points.
         </p>
         <p>
-            Linear SVC seemed more sensitive to its tuning parameter than Logistic Regression, often fluctuating in accuracy for both
-            classes with minor changes. Furthermore, as the samples tested became larger Linear SVC experienced significantly longer fit times than
-            Logistic Regression. Finally – and perhaps most importantly for our project – Logistic Regression can natively provide class
-            probabilities while making predictions. This would be extremely useful in ranking reviews that have not yet been voted on.
-            While SVC is capable of making probability estimates, it does so through an extremely expensive cross validation procedure.
+            Linear SVC seemed more sensitive to its tuning parameter than Logistic Regression. With minor changes to the
+            parameter, Linear SVC often fluctuated in accuracy for both classes. Furthermore, as the samples tested
+            became larger Linear SVC took significantly longer fit times than Logistic Regression. Finally – and perhaps
+            most importantly for our project – Logistic Regression can natively provide class probabilities while making
+            predictions. This would be extremely useful in ranking reviews that have not yet been voted on. While SVC is
+            capable of making probability estimates, it does so through an extremely expensive cross validation procedure.
             As such, we decided that Logistic Regression provided the best model for our particular objectives.
         </p>
     </div>
