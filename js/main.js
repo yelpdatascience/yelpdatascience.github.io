@@ -1,5 +1,6 @@
 // global variables for visualizations
-var freqBar;
+var freqBar,
+    bubbles;
 
 
 // Initialize data
@@ -12,7 +13,8 @@ function loadData() {
         .defer(d3.csv, "visdata/useful_counts.csv")
         .defer(d3.csv, "visdata/funny_counts.csv")
         .defer(d3.csv, "visdata/cool_counts.csv")
-        .await(function(error, usefulCounts, funnyCounts, coolCounts) {
+        .defer(d3.json, "visdata/useful_words.json")
+        .await(function(error, usefulCounts, funnyCounts, coolCounts, wordData) {
 
             // clean data and make it numeric
             usefulCounts.forEach(function(d){
@@ -31,6 +33,7 @@ function loadData() {
 
             // Instantiate visualizations
             freqBar = new FreqBar("freq-bar", usefulCounts, funnyCounts, coolCounts);
+            bubbles = new Bubbles("bubbles", wordData);
 
     });
 }

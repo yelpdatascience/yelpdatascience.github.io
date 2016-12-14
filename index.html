@@ -29,7 +29,6 @@
     </nav>
 
     <div id="top" class="section">
-        <img src="http://placehold.it/1200x500?text=Header+Image" height="500px" width="100%">
     <h1>Reviewing Reviews: A Study of the Helpfulness of Yelp User Reviews</h1>
         <h3><center>John Bowers, Michaela Kane, Jarele Soyinka, & Nisha Swarup</center></h3>
 
@@ -139,6 +138,87 @@
             While SVC is capable of making probability estimates, it does so through an extremely expensive cross validation procedure.
             As such, we decided that Logistic Regression provided the best model for our particular objectives.
         </p>
+
+        <!--<div id="tooltip" class="hidden" center = "right">-->
+            <!--<p><strong><span id="tip_title"> </span></strong></p>-->
+            <!--<p><span id="value">100</span></p>-->
+        <!--</div>-->
+        <!--<center><div id="bubbles"></div></center>-->
+
+        <!-- Table of Results -->
+        <h3>Table of Model Accuracies on Yelp Data</h3>
+        <center><table id="results" class="display" cellspacing="0" width="80%">
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>False Positive</th>
+                    <th>False Negative</th>
+                    <th>True Positive</th>
+                    <th>True Negative</th>
+                    <th>Positive Accuracy</th>
+                    <th>Negative Accuracy</th>
+                    <th>Cross Validated Accuracy</th>
+                    <th>Cross Validated AUC</th>
+                    <th>Training Set Accuracy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Random Forest</td>
+                    <td class="best">0.260</td>
+                    <td>0.495</td>
+                    <td class="best">0.541</td>
+                    <td>0.712</td>
+                    <td>0.491</td>
+                    <td class="best">0.755</td>
+                    <td class="best">0.646</td>
+                    <td>0.662</td>
+                    <td class="best">0.652</td>
+                </tr>
+                <tr>
+                    <td>Linear SVC</td>
+                    <td>0.332</td>
+                    <td>0.387</td>
+                    <td>0.528</td>
+                    <td class="best">0.740</td>
+                    <td>0.599</td>
+                    <td>0.661</td>
+                    <td>0.634</td>
+                    <td class="best">0.674</td>
+                    <td>0.647</td>
+                </tr>
+                <tr>
+                    <td>Logistic Regression</td>
+                    <td>0.374</td>
+                    <td class="best">0.370</td>
+                    <td>0.505</td>
+                    <td>0.737</td>
+                    <td class="best">0.618</td>
+                    <td>0.619</td>
+                    <td>0.615</td>
+                    <td>0.657</td>
+                    <td>0.628</td>
+                </tr>
+            </tbody>
+        </table></center>
+
+
+        <p>
+            The green cells indicate the best accuracies for each category.
+            It would appear that although Random Forest has some of the best accuracy scores out of the three, it is also
+            the most highly varying, with a positive accuracy rate of less than 50%.
+            Logistic Regression, on the other hand, tends to be very robust across all of the different scoring methods,
+            and it has the highest positive accuracy rate of nearly 62% (compared to Linear SVC's 66.1% and Random Forest's
+            49.1%).
+        </p>
+        <p>
+            For the applications of our project, some might argue for prioritizing positive accuracy, since the goal
+            of our model is to accurately predict whether a review is useful such that it can be placed where users
+            can easily see it. However, when we tried to weight our model on positive accuracy, we found that the
+            tradeoff in negative accuracy was unacceptably poor. After all, there is no point in making the useful
+            reviews more visible if it also bumps non-useful reviews.
+        </p>
+
     </div>
 
     <div id="section4" class="section">
@@ -187,6 +267,7 @@
 
 <!-- Visualization objects -->
 <script src="js/FreqBar.js"></script>
+<script src="js/Bubbles.js"></script>
 
 <!-- Load data, create visualizations -->
 <script src="js/main.js"></script>
