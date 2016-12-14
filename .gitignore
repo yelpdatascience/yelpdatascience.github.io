@@ -2,3 +2,5 @@ cleaned_data.csv
 json_2015.json
 Reviews.csv
 reviews.json
+.DS_Store
+.idea/workspace.xml

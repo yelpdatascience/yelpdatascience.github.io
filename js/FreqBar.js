@@ -35,24 +35,24 @@ FreqBar.prototype.initVis = function() {
 
     var vis = this;
 
-    vis.margin = {top: 20, right: 50, bottom: 10, left: 70};
+    vis.margin = {top: 20, right: 50, bottom: 10, left: 90};
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.right - vis.margin.left;
-    vis.height = 500 - vis.margin.top - vis.margin.bottom;
+    vis.height = 400 - vis.margin.top - vis.margin.bottom;
 
 
     // append drawing space
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
-        .attr("width", vis.width + vis.margin.right + vis.margin.left)
+        .attr("width", vis.width + vis.margin.right)
         .attr("height", vis.height + vis.margin.top + vis.margin.bottom);
 
 
     // INIT AXES (useful)
 
     // initialize x axis scale (using useful data)
-    vis.x = d3.scale.linear()
-        .domain([0, 15])
-        .range([0, vis.width]);
+    vis.x = d3.scale.ordinal()
+        .domain(d3.range(15))
+        .rangeRoundBands([0, vis.width]);
     // initialize y axis scale (using useful data)
     vis.y = d3.scale.linear()
         .domain([0, d3.max(vis.allData[1], function (d) {
@@ -80,6 +80,18 @@ FreqBar.prototype.initVis = function() {
         .call(vis.barYAxis)
         .attr("transform", "translate(" + vis.margin.left + ", 0)");
 
+    // Label the x axis
+    vis.svg.append("text")
+        .attr("class", "axis-label x-label")
+        .attr("x", vis.width - 100)
+        .attr("y", vis.height - 10)
+        .text("Number of Votes on Post");
+    // Label the y axis
+    vis.svg.append("text")
+        .attr("class", "axis-label y-label")
+        .attr("transform", "translate(" + vis.margin.left/3 + ", " + vis.height/2 + "), rotate(270)")
+        .text("Frequency");
+
     vis.updateVis();
 };
 
@@ -101,8 +113,11 @@ FreqBar.prototype.updateVis = function() {
 
     var vis = this;
 
-    // print number of listings in zoomed region to listing-count
+    // print type of votes being visualized
     document.getElementById('type').innerHTML = (vis.allTypes[vis.selVal]);
+    console.log(vis.selData[0]);
+    // print number of posts with zero views
+    document.getElementById('zeros').innerHTML = (vis.selData[0].freq).toString();
 
     // DRAW BARS
     // Data-join (rectangle now contains the update selection)
@@ -119,7 +134,7 @@ FreqBar.prototype.updateVis = function() {
         .duration(500)
         .attr("x", function(d) {
             if (d.num < 15) {
-                return vis.x(d.num) + vis.margin.left;
+                return 5 + vis.x(d.num) + vis.margin.left;
             }
             // don't let values for voteNum > 15 appear
             else {
