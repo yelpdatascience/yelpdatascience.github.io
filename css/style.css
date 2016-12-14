@@ -224,6 +224,24 @@ label {
     fill: #333;
 }
 
+/** CAROUSEL **/
+
+.carousel-inner.onebyone-carosel {
+    margin: auto;
+    width: 100%;
+}
+
+.carousel-control.left,.carousel-control.right {
+    background-image:none;
+}
+
+.carousel-caption {
+    background-color: lightgray;
+    color: black;
+    opacity: 0.8;
+    padding: 0px;
+}
+
 
 /* RESULTS TABLE */
 th {
