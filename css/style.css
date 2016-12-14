@@ -6,15 +6,6 @@ body {
 }
 
 h1 {
-    padding-top: 100px;
-    padding-left: 50px;
-    font-size: 65px;
-    padding-right: 50px;
-    line-height: 1.5;
-
-}
-
-h1 {
     font-family: 'Raleway', serif;
     font-size: 80px;
     font-weight: 200;
@@ -52,10 +43,9 @@ h4 {
     padding-right: 50px;
     font-size: 40px;
     font-weight: 200;
-    text-align: left;
+    text-align: center;
     margin-top: 50px;
     margin-bottom: 10px;
-    text-align: center;
 }
 
 h5 {
@@ -90,7 +80,7 @@ ol {
 
 .introduction {
     height:100vh;
-    width: 100vw;
+    width: 100%;
     background:
         linear-gradient(
           to bottom,
@@ -135,23 +125,21 @@ ol {
 
 /** NAV **/
 
-nav.horizontal-page-navigation ul {
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 8px;
-    padding-bottom: 16px;
-    margin: 0;
-}
-
-
 nav.horizontal-page-navigation {
-    width: 100%;
+    padding-left: 0;
+    margin-left: 0;
+    width: 100vw;
     background-color: #0C0F0A;
     text-align: center;
     font-family: 'Raleway', serif;
     text-transform: uppercase;
     position: fixed;
     z-index: 99999;
+}
+
+nav.horizontal-page-navigation ul {
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
 
 nav.horizontal-page-navigation li {
