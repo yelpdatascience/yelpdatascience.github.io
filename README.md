@@ -1,5 +1,6 @@
-# CS109a Final Project:
-## Welcome to our Final Project Github Page
+# REVIEWING REVIEWS: A Study of the Helpfulness of Yelp User Reviews
+
+## Welcome to our CS109a Final Project Github Page
 
 -- The cumulative python notebooks containing our work for the project can be found in the python folder under Yelp and Amazon for each respective topic. 
 
