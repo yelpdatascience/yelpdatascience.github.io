@@ -8,8 +8,10 @@
     <link rel='shortcut icon' href='img/favicon.ico' type='image/x-icon' >
 
     <!-- CSS libraries -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:500|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Custom CSS code -->
     <link rel="stylesheet" href="css/style.css">
@@ -22,10 +24,12 @@
         <ul class="menu">
             <li><a href="#top">Top</a></li>
             <li><a href="#section1">Introduction</a></li>
-            <li><a href="#section2">Data & Visualizations</a></li>
+            <li><a href="#section2">Data</a></li>
             <li><a href="#section3">Models</a></li>
             <li><a href="#section4">Conclusion</a></li>
-            <li><a href="#section5">Appendix</a></li>
+            <li><a href="#section5">Works Cited</a></li>
+            <li><a href="https://github.com/yelpdatascience/yelpdatascience.github.io/blob/master/python/Yelp/Final_Yelp_Notebook.ipynb">Yelp Notebook</a></li>
+            <li><a href="https://github.com/yelpdatascience/yelpdatascience.github.io/blob/master/python/Amazon/Final_Amazon_Notebook.ipynb">Amazon Notebook</a></li>
         </ul>
     </nav>
 
@@ -34,54 +38,56 @@
         <header>
             <h1>Reviewing Reviews</h1>
             <h2>A Study of the Helpfulness of Yelp User Reviews</h2>
+            <br>
             <h4>John Bowers, Michaela Kane, Jarele Soyinka, & Nisha Swarup</h4>
         </header>
     </div>
 
     <div id="section1" class="section">
+        <br>
         <h3>Introduction & Objectives</h3>
         <div class="row">
             <div class="col-sm-8">
                 <p>
-                    Most people are familiar with the popular website <a href="https://www.yelp.com">Yelp</a>, which
-                    connects people with local restaurants and businesses and is ranked #51 in US web-traffic.
-                    The lifeblood of the website is its extensive reserve of reviews, which allow users to do anything
-                    from choosing their entree at dinner to choosing a facility for a medical procedure. In addition to
-                    reading about other users' experience at a given location, users can also rate each others' reviews
-                    as 'Useful,' 'Funny,' or 'Cool.'
-                </p>
-
-                <p>For our project, we decided to investigate exactly how users rated other users’ reviews.
-                    In particular, we wanted to investigate what made a post helpful to other users: does word length
-                    impact the usefulness of a post? How about the ranking of the restaurant in question? By determining
-                    which characteristics of reviews contribute to their usefulness, we can create a model to predict a
-                    review's usefulness given certain characteristics. Such a model would help sites like Yelp give its
-                    users the best possible experience by highlighting the most useful reviews for a given business.
-                    This could also allow companies like Yelp to determine in what order reviews should be shown,
-                    rather than showing relatively useless reviews or burying the useful ones under other posts.
+                    Most people are familiar with the popular website <a href="https://www.yelp.com">Yelp</a>, which connects
+                    people with local restaurants and businesses and is ranked #51 in US web-traffic. The lifeblood of the website
+                    is its extensive archive of reviews, which empowers users to make informed choices. Whether the user is selecting
+                    an entree at a trendy new restaurant or considering facilities for a sophisticated medical procedure, Yelp offers
+                    a vast range of crowdsourced insights. After reading others’ reviews of businesses, users can elect to rate those
+                    reviews as 'Useful,' 'Funny,' or 'Cool.'
                 </p>
             </div>
             <div class="col-sm-4">
-                <img src="Yelp_Logo.png", style="width:300px;height:150px;">
+                <img src="img/Yelp_Logo.png", style="width:300px;height:150px;">
             </div>
         </div>
+        <p>
+            For our project, we decided to investigate how and why users rate reviews as belonging to these three categories.
+            In particular, we wanted to investigate what made a post useful to other users. By determining which characteristics
+            of reviews contribute to their usefulness, we aimed to create a model capable of predicting a review's usefulness
+            given its content. Such a model would help sites like Yelp give its users the best possible experience by
+            highlighting the reviews most likely to be useful for a given business, even if those reviews have not been voted
+            on at all. This could also allow companies like Yelp to better determine the order in which reviews should be shown,
+            rather than blindly prioritizing reviews less likely to be useful to consumer decision making.
+        </p>
     </div>
 
     <div id="section2" class="section">
         <h3>Data Collection & Initial Visualizations</h3>
-        <p>
-            To start, we downloaded a large archive of Yelp reviews (about 2 million total) from a Yelp-sponsored data
-            competition page. To make the data easier to work with, we chose to sample only those reviews which were
-            published in 2015 (about 600,000 total). After some simple cleaning to remove duplicates and verify the
-            data’s integrity, we began initial data visualization. Our first histogram of a sample of 50,000 reviews
-            from the data revealed the following:
 
+        <center><a href="https://github.com/yelpdatascience/yelpdatascience.github.io/blob/master/python/Yelp/Final_Yelp_Notebook.ipynb" class="button">Yelp iPython Notebook</a></center>
+        <br>
+
+        <p>
+            To start, we downloaded a large archive of Yelp reviews (about 2 million total) from a Yelp-sponsored data competition page.
+            To make the data easier to work with, we chose to sample only those reviews which were published in 2015 (about 600,000
+            total). After some simple cleaning to remove duplicates and verify the data’s integrity, we began initial data visualization.
+            Our first histogram of a sample of 50,000 reviews from the data revealed the following:
         </p>
 
         <!--Bar graph for frequency of number of votes -->
         <div class="row">
             <h4>Frequency of <span id="type"></span> Votes per Post</h4>
-            <h5>Number of Posts with 0 Votes: <span id="zeros"></span></h5>
         </div>
 
         <div class="row">
@@ -104,50 +110,125 @@
             </div>
         </div>
 
+        <div class="row">
+            <h5>Number of Posts with 0 Votes: <span id="zeros"></span></h5>
+        </div>
+
 
         <p>
             Clearly, many reviews are not receiving any votes for usefulness, coolness, or funniness, which indicates the
             following challenges to consider with this dataset:
-
-        <ol>
-        <li>Our model must be capable of dealing with large training and test sets due to the massive volume of reviews published on Yelp</li>
-        <li>Due to the nature of Yelp’s review rating system, our training data is inherently flawed – reviews might not receive votes
-            because they are:</li>
-            <ol type="a">
-                <li>actually not useful/funny/cool (this is optimal), or</li>
-                <li>despite being useful/funny/cool, the review simply did not receive any exposure and so received zero votes.</li>
+    </p>
+            <ol>
+            <li>Our model must be capable of dealing with large training and test sets due to the massive volume of reviews published on Yelp</li>
+            <li>Due to the nature of Yelp’s review rating system, our training data is inherently flawed – reviews might not receive votes
+                because they are:</li>
+                <ol type="a">
+                    <li>actually not useful/funny/cool (this is optimal), or</li>
+                    <li>despite being useful/funny/cool, the review simply did not receive any exposure and so received zero votes.</li>
+                </ol>
             </ol>
-        </ol>
 
+        <p>
+            With these confounding factors in mind, we moved into the process of model selection.
         </p>
+
     </div>
 
     <div id="section3" class="section">
         <h3>Models</h3>
+
+        <div class="row"><h4>Vote Type Word Clouds</h4></div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well">
+                    <div id="myCarousel" class="carousel fdi-Carousel slide">
+                        <!-- Carousel items -->
+                        <div class="carousel fdi-Carousel slide" id="eventCarousel" data-interval="0">
+                            <div class="carousel-inner onebyone-carosel">
+                                <div class="item active">
+                                    <div class="row">
+                                        <a href="#" class="thumbnail"><img src="img/all_wordcloud.png" alt="Image" class="img-responsive"
+                                                                           style="width: 50%; height: 50%"></a>
+                                    </div>
+                                    <div class="carousel-caption">
+                                        <p>Word Cloud for All Reviews</p>
+                                    </div>
+                                    <!--/row-->
+                                </div>
+                                <div class="item">
+                                    <div class="row">
+                                        <a href="#" class="thumbnail"><img src="img/useful_wordcloud.png" alt="Image" class="img-responsive"
+                                                                           style="width: 50%; height: 50%"></a>
+                                    </div>
+                                    <div class="carousel-caption">
+                                        <p>Word Cloud for Useful Reviews</p>
+                                    </div>
+                                    <!--/row-->
+                                </div>
+                                <div class="item">
+                                    <div class="row">
+                                        <a href="#" class="thumbnail"><img src="img/cool_wordcloud.png" alt="Image" class="img-responsive"
+                                                                           style="width: 50%; height: 50%"></a>
+                                    </div>
+                                    <div class="carousel-caption">
+                                        <p>Word Cloud for Cool Reviews</p>
+                                    </div>
+                                    <!--/row-->
+                                </div>
+                                <div class="item">
+                                    <div class="row">
+                                        <a href="#" class="thumbnail"><img src="img/funny_wordcloud.png" alt="Image" class="img-responsive"
+                                                                           style="width: 50%; height: 50%"></a>
+                                    </div>
+                                    <div class="carousel-caption">
+                                        <p>Word Cloud for Funny Reviews</p>
+                                    </div>
+                                    <!--/row-->
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#eventCarousel" role="button" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#eventCarousel" role="button" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                        <!--/carousel-inner-->
+                    </div><!--/myCarousel-->
+                </div><!--/well-->
+            </div>
+        </div>
+
         <p>
-            Given that we were working with text data, our first step was to get the reviews into a form interpretable
-            by our model. After experimenting with a number of methods to extract features from text, we settled on
-            non-binary count vectorization with Tf-idf weighting, a word-based tokenizer, and a no stemming algorithm.
-            This configuration seemed to give the best and most stable results overall. We found that using stemming
-            algorithms, word pairs, and other enhancements failed to boost our results.
+            Given that we were working with text data, our first step was to get the reviews into a form interpretable by our model.
+            After experimenting with a number of methods to extract features from text, we settled on non-binary count vectorization
+            with Tf-idf weighting, a word-based tokenizer, and a no stemming algorithm. This configuration seemed to give the best
+            and most stable results overall. We found that using stemming algorithms, word pairs, and other enhancements failed to boost
+            our results. We tried weighting observations according to how many votes of a particular kind they received, but ultimately
+            found that our best results came from simply considering each review's classification in binary terms (ex. Did receive a
+            helpfulness vote vs. Did not receive a helpfulness vote).
         </p>
         <p>
-            After vectorizing the reviews we tried 4 different classification algorithms for sentiment analysis: Random
-            Forests, AdaBoost with Random Forests and Logistic Regression, Linear SVC, and Logistic Regression. Each
-            algorithm was fit and tested on all three different comment types (funny, cool and useful). Class weights
-            were set to “balanced” in each case to compensate for our imbalanced sample: only a minority reviews
-            received any votes. Unfortunately, Random Forests and AdaBoost did not perform particularly well on our
-            dataset despite intensive tuning. Linear SVC and Logistic Regression performed comparably well, so we
-            went on to compare their finer points.
+            After vectorizing the reviews we tried 4 different classification algorithms for sentiment analysis: Random Forests,
+            AdaBoost with Random Forests and Logistic Regression, Linear SVC, and Logistic Regression. Each algorithm was fit and
+            tested on all three different comment types (funny, cool and useful). Class weights were set to “balanced” in each case to
+            compensate for our imbalanced sample: only a minority of reviews received any votes at all. Other weighting techniques
+            produced disadvantageous trade offs as described below. Unfortunately, Random Forests and AdaBoost did not perform
+            particularly well on our dataset despite intensive tuning. Linear SVC and Logistic Regression performed comparably well,
+            so we went on to compare their finer points.
         </p>
         <p>
-            Linear SVC seemed more sensitive to its tuning parameter than Logistic Regression. With minor changes to the
-            parameter, Linear SVC often fluctuated in accuracy for both classes. Furthermore, as the samples tested
-            became larger Linear SVC took significantly longer fit times than Logistic Regression. Finally – and perhaps
-            most importantly for our project – Logistic Regression can natively provide class probabilities while making
-            predictions. This would be extremely useful in ranking reviews that have not yet been voted on. While SVC is
-            capable of making probability estimates, it does so through an extremely expensive cross validation procedure.
-            As such, we decided that Logistic Regression provided the best model for our particular objectives.
+            Linear SVC seemed more sensitive to its tuning parameter than Logistic Regression. With minor changes to the parameter,
+            Linear SVC often fluctuated in accuracy for both classes. Furthermore, as the samples tested became larger Linear SVC
+            experienced significantly longer fit times than Logistic Regression. Finally – and perhaps most importantly for our project
+            – Logistic Regression can natively provide class probabilities while making predictions. This would be extremely useful
+            in ranking reviews that have not yet been voted on. While SVC is capable of making probability estimates, it does so through
+            an extremely expensive cross validation procedure. As such, we decided that Logistic Regression provided the best model for
+            our particular objectives.
         </p>
 
         <!--<div id="tooltip" class="hidden" center = "right">-->
@@ -157,8 +238,8 @@
         <!--<center><div id="bubbles"></div></center>-->
 
         <!-- Table of Results -->
-        <h4>Table of Model Accuracies on Yelp Data</h4>
-        <center><table id="results" class="display" cellspacing="0" width="80%">
+        <h4>Table of Useful Model Accuracies on Yelp Data</h4>
+        <center><table id="results" class="display" cellspacing="0" width="90%">
             <thead>
                 <tr>
                     <th>Model</th>
@@ -200,40 +281,41 @@
                 </tr>
                 <tr>
                     <td>Logistic Regression</td>
-                    <td>0.374</td>
-                    <td class="best">0.370</td>
-                    <td>0.505</td>
-                    <td>0.737</td>
-                    <td class="best">0.618</td>
-                    <td>0.619</td>
-                    <td>0.615</td>
-                    <td>0.657</td>
-                    <td>0.628</td>
+                    <td>0.377</td>
+                    <td class="best">0.371</td>
+                    <td>0.503</td>
+                    <td>0.735</td>
+                    <td class="best">0.645</td>
+                    <td>0.612</td>
+                    <td>0.613</td>
+                    <td>0.655</td>
+                    <td>0.625</td>
                 </tr>
             </tbody>
         </table></center>
-        <br>
+        <br><br>
 
 
         <p>
-            The green cells indicate the best accuracies for each category.
-            It would appear that although Random Forest has some of the best accuracy scores out of the three, it is also
-            the most highly varying, with a positive accuracy rate of less than 50%.
-            Logistic Regression, on the other hand, tends to be very robust across all of the different scoring methods,
-            and it has the highest positive accuracy rate of nearly 62% (compared to Linear SVC's 66.1% and Random Forest's
-            49.1%).
+            The table above shows the various accuracies of our models on the Yelp Dataset. The green cells indicate the best accuracies
+            for each category. It would appear that although Random Forest has some of the best accuracy scores out of the three, it is
+            also the most highly varying, with a positive accuracy rate of less than 50%. Logistic Regression, on the other hand, tends
+            to be very robust across all of the different scoring methods, and it has the highest positive accuracy rate of nearly 62%
+            (compared to Linear SVC's 59.9% and Random Forest's 49.1%).
         </p>
         <p>
-            For the applications of our project, some might argue for prioritizing positive accuracy, since the goal
-            of our model is to accurately predict whether a review is useful such that it can be placed where users
-            can easily see it. However, when we tried to weight our model on positive accuracy, we found that the
-            tradeoff in negative accuracy was unacceptably poor. After all, there is no point in making the useful
-            reviews more visible if it also bumps non-useful reviews.
+            For the applications of our project, some might argue for prioritizing positive accuracy, since the goal of our model is to
+            accurately predict whether a review is useful such that it can be placed where users can easily see it. However, when we
+            tried to weight our model on positive accuracy, we found that the tradeoff in negative accuracy was unacceptably poor.
+            After all, there is no point in making the useful reviews more visible if it also bumps non-useful reviews. Furthermore,
+            our model is intended to be used probabilistically – even if a review falls under the .50 probability threshold needed to
+            label it as being positive, its positive class probability estimate can nonetheless distinguish it from other reviews
+            labeled as negative.
         </p>
 
         <!-- Table of LogReg Accuracies after Positive Accuracy Weighting -->
-        <h4>Logistic Regression Accuracies: Biased in Favor of Positive Accuracy</h4>
-        <center><table id="weighted-results" class="display" cellspacing="0" width="80%">
+        <h4>Useful Logistic Regression Accuracies: Biased in Favor of Positive Accuracy</h4>
+        <center><table id="weighted-results" class="display" cellspacing="0" width="70%">
             <thead>
                 <tr>
                     <th>Percentage from Balanced</th>
@@ -281,52 +363,194 @@
                 </tr>
             </tbody>
         </table></center><br>
-
+        <br><br>
 
         <!-- Line Graph of LogReg Accuracies after Positive Accuracy Weighting -->
         <div class="row">
-            <center><div class="col-sm-8" id="bias-line"></div></center>
+            <center><div class="col-sm-12" id="bias-line"></div></center>
         </div>
+        <br>
 
         <p>
             Although positive accuracy does increase, negative accuracy decreases at nearly twice the rate, making
             a model biased in favor of positive accuracy unappealing.
         </p>
 
+        <p>
+            When run on the Yelp Dataset, our model tagged the following reviews as highly likely/unlikely to be termed 'useful,' 'cool,' and
+            'funny' respecively:
+        </p>
+
+        <div class="row">
+            <div class="col-sm-3" id="useful-rev">
+                <p>
+                    <strong>Probability of “Useful” Classification: 71.2%</strong>
+                </p>
+                <p>
+                    “This place certainly changes your mood, if your having a rough morning that is. I see the place and drive around it and it looks like
+                    a normal building. I park in the back and while walking in the first thing I notice is the sitting area outside. The design of the
+                    little open gazebo sitting area is so nice... (review continues)”
+                </p>
+            </div>
+            <div class="col-sm-3" id="funny-rev">
+                <p>
+                    <strong>Probability of “Funny” Classification: 70.0%</strong>
+                </p>
+                <p>
+                    “Our first trip to Dumpling King was admittedly a little nerve-wrecking. Besides not having a clue where it was, or really having
+                    never heard about it at all, it was strange walking into a place that was pretty much empty of other diners, but full of bright floral
+                    designs...and Christmas decorations... (review continues)”
+                </p>
+            </div>
+            <div class="col-sm-3" id="cool-rev">
+                <p>
+                    <strong>Probability of “Cool” Classification: 64.1%</strong>
+                </p>
+                <p>
+                    “This is a new restaurant in the NYNY. It's right off the Brooklyn Bridge and accessible from the Strip or from inside the NYNY.
+                    From the inside, there's a bar area, then a set of glass doors, then a large dining area with a larger bar. From the Strip, there's
+                    a really nice patio area, including a bar... (review continues)”
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3" id="notUseful-rev">
+                <p>
+                    <strong>Probability of “Useful” Classification: 21.7%</strong>
+                </p>
+                <p>
+                    “Food is great service not so great.”
+
+
+                </p>
+            </div>
+            <div class="col-sm-3" id="notFunny-rev">
+                <p>
+                    <strong>Probability of “Funny” Classification: 22.1%</strong>
+                </p>
+                <p>
+                    “The food is great,  the staff is friendly and it's a great atmosphere. Definitely recommend”
+                </p>
+            </div>
+            <div class="col-sm-3" id="notCool-rev">
+                <p>
+                    <strong>Probability of “Cool” Classification: 34.0%</strong>
+                </p>
+                <p>
+                    “The food was great!  Great service too.”
+                </p>
+            </div>
+        </div>
+
     </div>
 
     <div id="section4" class="section">
         <h3>Conclusion</h3>
-        <p>Although we feel that we pushed the limits of our models, the confounding factors in our data capped our
-            cross validated accuracy in the low to mid 60 percent range for both classes. These factors are inherently
-            arbitrary in nature which reflected in the tuning for Random Forests and AdaBoost. Despite, the weighting
-            and biases we added to our model, the non-concrete nature of what humans view as funny, cool, or useful
-            rendered those efforts useless. Yet the relationship between the review and how it’s perceived is not
-            completely arbitrary as evidenced by our success with LinearSVC and Logistic regression. Consistent key
-            words and persistent sentiment analysis for reviews proved critical for these models and they were able to
-            demonstrate their strengths through their respective cross-validation procedures and class prediction abilities.
+        <p>
+            Although we feel that we pushed the limits of our models, the confounding factors in our data capped our cross validated
+            accuracy in the low to mid 60 percent range for both classes. These factors are inherently arbitrary in nature, which was
+            reflected in the tuning for Random Forests and AdaBoost. Despite the weighting and biases we added to our model, the
+            subjectivity of what humans consider to be funny, cool, or useful rendered those efforts useless. Our task was more
+            difficult than simple sentiment analysis, as positivity and negativity are more distinct and easily differentiable
+            categories than helpful and unhelpful.
         </p>
         <p>
-            This is further evidenced as we went beyond the scope of our project to test on Amazon reviews, for which
-            the rating system differs. Users on Amazon can rate reviews as either "helpful" or "not helpful." This
-            dataset enabled us to target reviews that had been liberally rated, and we secured a large sample pool of helpful
-            (voted helpful over 50%) vs. non-helpful reviews. When tested on this dataset, our models achieved positive
-            and negative accuracies between 72% and 80%. However, the fact that our model produced meaningful (if
-            important) results implies that it would provide a significant improvement over random or chronological
-            presentation of voteless reviews.
+            Yet the relationship between a review’s content and how it is perceived by other users is not completely arbitrary as
+            evidenced by our relative success with LinearSVC and Logistic regression. Consistent keywords and results for reviews
+            demonstrated our models’ strengths through their respective cross-validation procedures. Clear trends are evident within
+            the data, and should be leveraged to the greatest possible extent despite their imperfection.
         </p>
         <p>
-            The benefits of a system like this are very apparent. Not only would websites be able to score and rank
-            unrated reviews, companies would have a means of seeing common trends on what makes a review helpful. This
-            could manifest itself in advertising, with business emphasizing features commonly discussed in reviews,
-            product innovation, to meet the needs of that have been previously ignored, and many other areas as valued
-            information assets. Even without a perfect accuracy, a wealth of information can always be used to inform
-            important decisions.
+            This is further evidenced as we went beyond the scope of our project to test on Amazon reviews, for which the rating system
+            differs. Users on Amazon can rate reviews as either "helpful" or "not helpful." This dataset enabled us to target reviews
+            that had been provably rated a large number of times, and we secured a large sample pool of helpful (voted helpful over 50%)
+            vs. non-helpful reviews. When tested on this dataset, our models achieved positive and negative accuracies between 72% and
+            80%. This speaks to the advantages offered by a review rating system that accommodates negative votes: by putting a
+            denominator on helpfulness ratings, they make it far easier to train models to recognize useful and not useful as different
+            classes.
+        </p>
+        <p>
+            The benefits of a usefulness ranking model like the one we propose are extensive. Websites implementing such a model would
+            be able to score and rank unrated or underexposed reviews, and companies would gain greater insight into what makes a review
+            helpful to consumer decision making. This could have applications in advertising and development, empowering businesses to
+            emphasize features commonly discussed in reviews through product innovation. Even in the presence of confounding factors, a
+            wealth of information such as that offered by Yelp’s review corpus can be leveraged into powerful decision-making tools.
         </p>
     </div>
 
     <div id="section5" class="section">
-        <!--link to ipynb notebook-->
+        <h3>Works Cited</h3>
+        <p>
+            Danescu-Niculescu-Mizil, C., Kossinets, G., Kleinberg, J., & Lee, L. (2009, April). How opinions are
+            received by online communities: a case study on amazon. com helpfulness votes. In <i>Proceedings of the 18th
+            international conference on World wide web</i> (pp. 141-150). ACM.
+        </p>
+
+        <p>
+            Das, S. (2015). Beginners Guide to learn about Content Based Recommender Engines. Retrieved from
+            <a href="https://www.analyticsvidhya.com/blog/2015/08/beginners-guide-learn-content-based-recommender-systems">
+                https://www.analyticsvidhya.com/blog/2015/08/beginners-guide-learn-content-based-recommender-systems</a>
+
+        </p>
+
+
+        <p>
+            Ghose, A., & Ipeirotis, P. G. (2011). Estimating the helpfulness and economic impact of product reviews:
+            Mining text and reviewer characteristics. <i>IEEE Transactions on Knowledge and Data Engineering</i>, 23(10),
+            1498-1512.
+        </p>
+
+
+        <p>
+            Kaggle (2015). Amazon Fine Food Reviews. Retrieved from
+            <a href="https://www.kaggle.com/snap/amazon­fine­food­reviews">
+                https://www.kaggle.com/snap/amazon­fine­food­reviews</a>
+        </p>
+
+
+        <p>
+            Kim, S. M., Pantel, P., Chklovski, T., & Pennacchiotti, M. (2006, July). Automatically assessing review
+            helpfulness. <i>In Proceedings of the 2006 Conference on empirical methods in natural language processing</i>
+            (pp. 423-430). Association for Computational Linguistics.
+        </p>
+
+
+        <p>
+            Leskovec, J., Rajaraman, A., & Ullman, J. D. (2014). <i>Mining of massive datasets</i>. Cambridge University
+            Press.
+        </p>
+
+
+        <p>
+            Marafi, S. (2015). Collaborative Filtering with Python. Retrieved from
+            <a href="http://www.salemmarafi.com/code/collaborative-filtering-with-python">
+                http://www.salemmarafi.com/code/collaborative-filtering-with-python</a>
+        </p>
+
+
+        <p>
+            McAuley, J. and Leskovec, J. (2013). From amateurs to connoisseurs: modeling the evolution of user expertise through
+            online reviews.
+        </p>
+
+
+        <p>
+            Pang, B., & Lee, L. (2008). Opinion mining and sentiment analysis. <i>Foundations and trends in information
+            retrieval</i>, 2(1-2), 1-135.
+        </p>
+
+
+        <p>
+            Yelp (2016). Yelp Dataset Challenge. Retrieved from
+            <a href="https://www.yelp.com/dataset_challenge">
+                https://www.yelp.com/dataset_challenge</a>
+        </p>
+
+
+
+        <br> <br>
+
     </div>
 </div>
 
